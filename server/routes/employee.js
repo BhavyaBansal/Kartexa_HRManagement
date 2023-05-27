@@ -4,5 +4,7 @@ const employeeController = require("../controllers/employeeController");
 console.log("Helloo Employee");
 // router.use(express.json());
 router.post("/addemployee", employeeController.addemployee);
+router.get("/getemployeedata/:hrId",employeeController.getemployeedata);
+router.delete("/deleteEmployee/:empId", employeeController.deleteEmployee);
 // router.post('/login',hrController.login);
 module.exports = router;

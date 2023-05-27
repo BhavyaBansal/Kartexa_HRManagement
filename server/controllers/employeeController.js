@@ -63,3 +63,46 @@ exports.addemployee = (req, res) => {
       res.status(500).json({ error: "Failed To Create Employee" });
     });
 };
+
+exports.getemployeedata = (req, res) => {
+  const hrId = req.params;
+  console.log(hrId);
+  Employee.find(hrId)
+    .then((data) => {
+      const serealizedData = data.map((emp) => ({
+        id: emp._id,
+        name: emp.name,
+        email: emp.email,
+        phonenumber: emp.phonenumber.toString(),
+        department: emp.department,
+        designation: emp.designation,
+        joiningdate: emp.joiningdate,
+        employmentstatus: emp.employmentstatus,
+        probationenddate: emp.probationenddate,
+        confirmationdate: emp.confirmationdate,
+        salary: emp.salary,
+        managername: emp.managername,
+        leavebalance: emp.leavebalance,
+      }));
+      res.status(200).json(serealizedData);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      res.status(500).json({ message: "Server error" });
+    });
+};
+
+exports.deleteEmployee = (req, res) => {
+  const { empId } = req.params;
+  Employee.findByIdAndDelete(empId)
+    .then((deletedEmployee) => {
+      if (!deletedEmployee) {
+        return res.status(404).json({ message: "Employee Not Found" });
+      }
+      res.status(200).json({ message: "Employee Deleted Successfully" });
+    })
+    .catch((error) => {
+      console.log("Error Deleating Employee", error);
+      res.status(500).json({ error: "Server Error" });
+    });
+};

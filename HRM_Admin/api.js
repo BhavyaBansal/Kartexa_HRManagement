@@ -91,3 +91,13 @@ export const addemployee = (
     },
   );
 };
+
+export const getemployeedata = hrId => {
+  // console.log(hrId, 'Hr');
+  return axios.get(`${API_BASE_URL}/employee/getemployeedata/${hrId}`);
+};
+
+export const deletedEmployee = empId => {
+  // console.log(empId, 'Employee');
+  return axios.delete(`${API_BASE_URL}/employee/deleteEmployee/${empId}`);
+};
