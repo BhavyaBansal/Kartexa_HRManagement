@@ -7,6 +7,13 @@ import SignUpScreen from './screens/SignUpScreen';
 import Colors from './constants/colors';
 import HomeScreen from './screens/HomeScreen';
 import AddEmployeeForm from './screens/AddEmployeeForm';
+import EmployeeDetailScreen from './screens/EmployeeDetailScreen';
+import UpdateEmployeeForm from './screens/UpdateEmployeeForm';
+import ForgotPassword from './screens/ForgotPassword';
+import VerificationCodeScreen from './screens/VerificationCodeScreen';
+import UpdatePassword from './screens/UpdatePassword';
+import CheckInScreen from './screens/CheckInScreen';
+import CheckOutScreen from './screens/CheckOutScreen';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -40,6 +47,41 @@ function App() {
         <Stack.Screen
           name="AddEmp"
           component={AddEmployeeForm}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="EmployeeDetail"
+          component={EmployeeDetailScreen}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="UpdateEmployee"
+          component={UpdateEmployeeForm}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPassword}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="VerificationScreen"
+          component={VerificationCodeScreen}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="UpdatePassword"
+          component={UpdatePassword}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="CheckIn"
+          component={CheckInScreen}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="CheckOut"
+          component={CheckOutScreen}
           options={{title: ''}}
         />
       </Stack.Navigator>

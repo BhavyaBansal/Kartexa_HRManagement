@@ -1,5 +1,6 @@
 import axios from 'axios';
 const API_BASE_URL = 'http://10.0.2.2:3000/api';
+
 export const signup = (fullname, phonenumber, email, password) => {
   //   console.log(fullname, phonenumber, email, password);
   return axios.post(
@@ -21,6 +22,23 @@ export const signup = (fullname, phonenumber, email, password) => {
 export const signin = (email, password) => {
   return axios.post(
     `${API_BASE_URL}/auth/signin/`,
+    {email, password},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const sendEmail = mailOptions => {
+  // console.log(hrId, 'Hr');
+  return axios.post(`${API_BASE_URL}/auth/sendEmail`, {mailOptions});
+};
+
+export const updatePassword = (email, password) => {
+  return axios.put(
+    `${API_BASE_URL}/auth/updatepassword`,
     {email, password},
     {
       headers: {
@@ -54,7 +72,7 @@ export const addemployee = (
   confirmationdate,
   salary,
   managername,
-  leavebalance,
+  // leavebalance,
 ) => {
   return axios.post(
     `${API_BASE_URL}/employee/addemployee`,
@@ -82,7 +100,7 @@ export const addemployee = (
       confirmationdate,
       salary,
       managername,
-      leavebalance,
+      // leavebalance,
     },
     {
       headers: {
@@ -100,4 +118,65 @@ export const getemployeedata = hrId => {
 export const deletedEmployee = empId => {
   // console.log(empId, 'Employee');
   return axios.delete(`${API_BASE_URL}/employee/deleteEmployee/${empId}`);
+};
+
+export const updateemployee = (
+  empId,
+  name,
+  email,
+  temppassword,
+  phonenumber,
+  department,
+  designation,
+  joiningdate,
+  employmentstatus,
+  probationenddate,
+  confirmationdate,
+  salary,
+  managername,
+  // leavebalance,
+) => {
+  return axios.put(
+    `${API_BASE_URL}/employee/updateEmployeeById/${empId}`,
+    {
+      name,
+      email,
+      temppassword,
+      phonenumber,
+      department,
+      designation,
+      joiningdate,
+      employmentstatus,
+      probationenddate,
+      confirmationdate,
+      salary,
+      managername,
+      // leavebalance,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const getclockindetails = (date, hrId) => {
+  // console.log(hrId+"Hello");
+  return axios.get(`${API_BASE_URL}/clockinout/clockindetails/${date}${hrId}`);
+};
+export const getclockoutdetails = (date, hrId) => {
+  return axios.get(`${API_BASE_URL}/clockinout/clockoutdetails/${date}${hrId}`);
+};
+
+export const checkforpassupdated = id => {
+  return axios.post(
+    `${API_BASE_URL}/employee/checkforpassupdated`,
+    {id},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
 };

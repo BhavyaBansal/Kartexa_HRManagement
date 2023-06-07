@@ -47,7 +47,10 @@ const employeeSchema = new Schema(
     confirmationdate: { type: Date },
     salary: { type: Number, required: true },
     managername: { type: String, required: true },
-    leavebalance: { type: Number, required: true },
+    casualleaves: { type: Number, default: 2 },
+    earnedleaves: { type: Number, default: 0 },
+    maternityleaves: { type: Number, default: 0 },
+    ispassupdated: { type: Boolean, enum: [true, false], default: false },
   },
   { timestamps: true }
 );

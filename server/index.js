@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const authHrRoutes = require("./routes/auth");
 const addEmployeeRoutes = require("./routes/employee");
+const clockinoutRoutes = require("./routes/clockinout");
 const MongoDbStore = require("connect-mongo");
 // const multer = require('')
 const session = require("express-session");
@@ -22,7 +23,8 @@ const PORT = 3000;
 //     console.log("MongoDB connection error", error);
 //   });
 mongoose.set("strictQuery", false);
-const url = "mongodb://127.0.0.1/HRM";
+const url =
+  "mongodb+srv://bhavyabansal0916:y3pSoxrLeu64jWCP@cluster0.vpofow2.mongodb.net/HRM";
 mongoose.connect(url, {
   useNewUrlParser: true,
   // useCreateIndex: true,
@@ -55,6 +57,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use("/api/auth", authHrRoutes);
 app.use("/api/employee", addEmployeeRoutes);
+app.use("/api/clockinout", clockinoutRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

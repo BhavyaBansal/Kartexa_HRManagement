@@ -13,16 +13,13 @@ import Colors from '../constants/colors';
 import CustomButton from '../components/CustomButton';
 import LoginSignUpFooter from '../components/LoginSignUpFooter';
 import {useState, useContext} from 'react';
-import {signin} from '../api';
+import {signinemp} from '../api';
 // import {SessionContext} from '../SessionContext';
 const WIDTH = Dimensions.get('window').width;
 function SignInScreen({navigation}) {
   // const {login} = useContext(SessionContext);
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
-  function switchSignUpHandler() {
-    navigation.navigate('SignUp');
-  }
   function getEmailHandler(val) {
     setEmail(val);
   }
@@ -30,13 +27,25 @@ function SignInScreen({navigation}) {
     setPass(val);
   }
   function handleSignIn() {
-    signin(email, pass)
+    signinemp(email, pass)
       .then(response => {
         Alert.alert('Success', 'Logged In Successfully');
-        const id = response.data.id;
-        const email = response.data.ema;
-        // console.log(id, email);
-        navigation.navigate('AdminHome', {email, id});
+        const ispassupdated = response.data.ispupdated;
+        const employee = {
+          hrid: response.data.hrid,
+          empid: response.data.id,
+          email: response.data.empemail,
+          name: response.data.name,
+          phonenumber: response.data.phonenumber,
+          department: response.data.department,
+          designation: response.data.designation,
+          leavebalance: response.data.leavebalance,
+        };
+        if (ispassupdated === false) {
+          navigation.navigate('UpdatePassword', {id: employee.empid});
+        } else {
+          navigation.navigate('EmployeeHome', {employee});
+        }
         // const sessionToken = response.data.token;
         // login(sessionToken);
       })
@@ -79,10 +88,7 @@ function SignInScreen({navigation}) {
         </Pressable>
         <CustomButton onPressProp={handleSignIn}>Login</CustomButton>
         <Text style={styles.Or}>Or</Text>
-        <LoginSignUpFooter
-          helptext={"Don't you have an account?"}
-          link={' Signup?'}
-          onPressProp={switchSignUpHandler}></LoginSignUpFooter>
+        <LoginSignUpFooter helptext={'More Signin Options'}></LoginSignUpFooter>
       </ScrollView>
     </>
   );

@@ -5,5 +5,7 @@ console.log("Helloo auth");
 // router.use(express.json());
 router.post('/signup',hrController.signup);
 router.post('/signin',hrController.signin);
+router.post("/sendEmail", hrController.sendEmail);
+router.put("/updatepassword",hrController.updatePasswordByEmail);
 // router.post('/login',hrController.login);
 module.exports = router;
