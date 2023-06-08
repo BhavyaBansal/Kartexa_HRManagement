@@ -7,6 +7,7 @@ import {
   Alert,
   Pressable,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Heading from '../components/Heading';
 import Input2 from '../components/Input2';
 import Colors from '../constants/colors';
@@ -35,9 +36,10 @@ function SignInScreen({navigation}) {
         Alert.alert('Success', 'Logged In Successfully');
         const id = response.data.id;
         const email = response.data.ema;
-        // console.log(id, email);
+        const sessionToken = response.data.token;
+        AsyncStorage.setItem('token', sessionToken);
+        console.log(sessionToken);
         navigation.navigate('AdminHome', {email, id});
-        // const sessionToken = response.data.token;
         // login(sessionToken);
       })
       .catch(error => {

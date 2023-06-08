@@ -1,6 +1,5 @@
 import axios from 'axios';
 const API_BASE_URL = 'http://10.0.2.2:3000/api';
-
 export const signup = (fullname, phonenumber, email, password) => {
   //   console.log(fullname, phonenumber, email, password);
   return axios.post(
@@ -19,7 +18,7 @@ export const signup = (fullname, phonenumber, email, password) => {
   );
 };
 
-export const signin = (email, password) => {
+export const signin = async (email, password) => {
   return axios.post(
     `${API_BASE_URL}/auth/signin/`,
     {email, password},
@@ -29,6 +28,20 @@ export const signin = (email, password) => {
       },
     },
   );
+  // try {
+  //   const signInres = axios.post(`${API_BASE_URL}/auth/signin/`, {
+  //     email,
+  //     password,
+  //   });
+  //   // if (signInres) {
+  //   //   const token = signInres.token;
+  //   //   await AsyncStorage.setItem('token', token);
+  //   // }
+  //   console.log(signInres);
+  //   return signInres;
+  // } catch (error) {
+  //   console.log('Error inside signin method', error.message);
+  // }
 };
 
 export const sendEmail = mailOptions => {

@@ -37,7 +37,6 @@ function EmployeeHome({route, navigation}) {
       emp.phonenumber,
       emp.department,
       emp.designation,
-      emp.leavebalance,
     )
       .then(res => {
         Alert.alert('Success', 'Clocked In Successfully');
@@ -86,7 +85,7 @@ function EmployeeHome({route, navigation}) {
           )}
         </View>
       </ScrollView>
-      <NavigationFooter></NavigationFooter>
+      <NavigationFooter emp={emp}></NavigationFooter>
     </>
   );
 }

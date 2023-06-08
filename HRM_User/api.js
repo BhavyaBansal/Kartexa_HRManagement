@@ -27,6 +27,49 @@ export const updatepassword = (id, pass) => {
     },
   );
 };
+
+export const getoneemployeedata = empId => {
+  // console.log(hrId, 'Hr');
+  return axios.get(`${API_BASE_URL}/employee/getoneemployeedata/${empId}`);
+};
+export const updateoneemployee = (
+  empId,
+  name,
+  phonenumber,
+  aadharnumber,
+  pannumber,
+  address,
+  dateofbirth,
+  gender,
+  maritalstatus,
+  emergencycontactname,
+  emergencycontactnumber,
+  accountnumber,
+  ifsccode,
+) => {
+  return axios.put(
+    `${API_BASE_URL}/employee/updateoneEmployeeById/${empId}`,
+    {
+      name,
+      phonenumber,
+      aadharnumber,
+      pannumber,
+      address,
+      dateofbirth,
+      gender,
+      maritalstatus,
+      emergencycontactname,
+      emergencycontactnumber,
+      accountnumber,
+      ifsccode,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
 export const sendEmail = mailOptions => {
   // console.log(hrId, 'Hr');
   return axios.post(`${API_BASE_URL}/auth/sendEmail`, {mailOptions});
@@ -39,7 +82,6 @@ export const clockIn = (
   phonenumber,
   department,
   designation,
-  leavebalance,
 ) => {
   return axios.post(
     `${API_BASE_URL}/clockinout/clockin`,
@@ -51,7 +93,6 @@ export const clockIn = (
       phonenumber,
       department,
       designation,
-      leavebalance,
     },
     {
       headers: {

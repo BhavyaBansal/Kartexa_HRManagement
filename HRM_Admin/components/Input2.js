@@ -1,7 +1,15 @@
 import {View, Text, TextInput, StyleSheet, Dimensions} from 'react-native';
 import Colors from '../constants/colors';
 const WIDTH = Dimensions.get('window').width;
-function Input2({children, placeholder, type, content,onChangeTextProp}) {
+function Input2({
+  children,
+  placeholder,
+  type,
+  content,
+  onChangeTextProp,
+  secure,
+  editable,
+}) {
   return (
     <View style={styles.outerContainer}>
       <Text style={styles.text}>{children}</Text>
@@ -10,7 +18,9 @@ function Input2({children, placeholder, type, content,onChangeTextProp}) {
         style={styles.input}
         keyboardType={type}
         textContentType={content}
-        onChangeText={onChangeTextProp}></TextInput>
+        onChangeText={onChangeTextProp}
+        secureTextEntry={secure}
+        editable={editable}></TextInput>
     </View>
   );
 }
@@ -26,9 +36,9 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
     letterSpacing: 0.5,
-    fontWeight:'bold',
+    fontWeight: 'bold',
   },
-  outerContainer:{
-    marginBottom:30,
-  }
+  outerContainer: {
+    marginBottom: 30,
+  },
 });

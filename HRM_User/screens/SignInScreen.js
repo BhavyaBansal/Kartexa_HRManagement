@@ -39,7 +39,6 @@ function SignInScreen({navigation}) {
           phonenumber: response.data.phonenumber,
           department: response.data.department,
           designation: response.data.designation,
-          leavebalance: response.data.leavebalance,
         };
         if (ispassupdated === false) {
           navigation.navigate('UpdatePassword', {id: employee.empid});
@@ -80,7 +79,8 @@ function SignInScreen({navigation}) {
         <Input2
           placeholder={'Enter Password'}
           type={'default'}
-          onChangeTextProp={getPasswordHandler}>
+          onChangeTextProp={getPasswordHandler}
+          secure={true}>
           Password:
         </Input2>
         <Pressable style={styles.forget} onPress={forgotPasswordHandler}>

@@ -1,15 +1,7 @@
 const Cio = require("../models/ClockInOut");
 exports.clockin = (req, res) => {
-  const {
-    hrId,
-    empId,
-    name,
-    email,
-    phonenumber,
-    department,
-    designation,
-    leavebalance,
-  } = req.body;
+  const { hrId, empId, name, email, phonenumber, department, designation } =
+    req.body;
   let oldDate = new Date();
   let newDate = new Date();
   newDate.setTime(oldDate.getTime() + 19800 * 1000);
@@ -21,7 +13,6 @@ exports.clockin = (req, res) => {
     phonenumber,
     department,
     designation,
-    leavebalance,
     clockintime: newDate,
   });
   cio

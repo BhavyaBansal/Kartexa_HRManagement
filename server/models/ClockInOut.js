@@ -19,7 +19,6 @@ const clockinoutSchema = new Schema(
     phonenumber: { type: BigInt, required: true },
     department: { type: String, required: true },
     designation: { type: String, required: true },
-    leavebalance: { type: Number, required: true },
     clockintime: { type: Date },
     clockouttime: { type: Date, default: null },
     totaltimeworked: { type: String, default: "" },

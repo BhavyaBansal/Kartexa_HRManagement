@@ -1,15 +1,28 @@
 import {View, TextInput, StyleSheet, Dimensions} from 'react-native';
 import Colors from '../constants/colors';
 const Width = Dimensions.get('window').width;
-function Input1({placeValue, onChangeProp, onPressInProp, inputValue}) {
+function Input1({
+  placeValue,
+  onChangeProp,
+  onPressInProp,
+  inputValue,
+  secure,
+  editable,
+}) {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        editable === false ? styles.noteditableText : '',
+      ]}>
       <TextInput
         onChangeText={onChangeProp}
         style={styles.text}
         placeholder={placeValue}
         onPressIn={onPressInProp}
-        value={inputValue}></TextInput>
+        value={inputValue}
+        secureTextEntry={secure}
+        editable={editable}></TextInput>
     </View>
   );
 }
@@ -17,7 +30,7 @@ export default Input1;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.blue100,
-    width: Width * 0.7,
+    width: Width * 0.9,
     borderRadius: 10,
     margin: 10,
   },
@@ -27,4 +40,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     color: Colors.grey200,
   },
+  noteditableText:{
+    backgroundColor:Colors.blue100,
+    opacity:0.6,
+  }
 });

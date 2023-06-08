@@ -7,9 +7,14 @@ router.post("/addemployee", employeeController.addemployee);
 router.get("/getemployeedata/:hrId", employeeController.getemployeedata);
 router.delete("/deleteEmployee/:empId", employeeController.deleteEmployee);
 router.put("/updateEmployeeById/:empId", employeeController.updateEmployeeById);
+router.put(
+  "/updateoneEmployeeById/:empId",
+  employeeController.updateoneEmployeeById
+);
 router.post("/signinemp", employeeController.signinemp);
 router.put("/updatepasswordbyId", employeeController.updatepasswordbyId);
 router.post("/getidbyemail", employeeController.getIdFromEmail);
 router.post("/checkforpassupdated", employeeController.checkforpassupdated);
+router.get("/getoneemployeedata/:empId", employeeController.getoneemployeedata);
 // router.post('/login',hrController.login);
 module.exports = router;

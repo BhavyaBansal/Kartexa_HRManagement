@@ -1,14 +1,28 @@
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, Pressable} from 'react-native';
 import Colors from '../constants/colors';
 const WIDTH = Dimensions.get('window').width;
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-function NavigationFooter() {
+import {useNavigation} from '@react-navigation/native';
+function NavigationFooter(props) {
+  const empData = props.emp;
+  // console.log(empData.empid);
+  const navigation = useNavigation();
+  function openAccountPageHandler() {
+    navigation.navigate('Account', {empId: empData.empid});
+  }
+  function openHomeScreenHandler() {
+    navigation.navigate('EmployeeHome', {employee: empData});
+  }
   return (
     <View style={styles.outerContainer}>
       <View style={styles.iconsContainer}>
-        <FontAwesome5 name="home" size={25} style={styles.icons} />
+        <Pressable
+          onPress={openHomeScreenHandler}
+          android_ripple={{color: '#ccc', borderless: true}}>
+          <FontAwesome5 name="home" size={25} style={styles.icons} />
+        </Pressable>
         <Ionicons name="mail" size={27} style={styles.icons} />
         <MaterialCommunityIcons
           name="calendar-month"
@@ -16,7 +30,11 @@ function NavigationFooter() {
           style={styles.icons}
         />
         <Ionicons name="settings" size={27} style={styles.icons} />
-        <FontAwesome5 name="user-alt" size={25} style={styles.icons} />
+        <Pressable
+          onPress={openAccountPageHandler}
+          android_ripple={{color: '#ccc', borderless: true}}>
+          <FontAwesome5 name="user-alt" size={25} style={styles.icons} />
+        </Pressable>
       </View>
     </View>
   );
@@ -33,10 +51,10 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   iconsContainer: {
-    height:WIDTH*0.13,
+    height: WIDTH * 0.13,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems:'center',
+    alignItems: 'center',
   },
   icons: {
     color: '#ffffff',

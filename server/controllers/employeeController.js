@@ -68,7 +68,7 @@ exports.addemployee = (req, res) => {
 
 exports.getemployeedata = (req, res) => {
   const hrId = req.params;
-  console.log(hrId);
+  // console.log(hrId);
   Employee.find(hrId)
     .then((data) => {
       const serealizedData = data.map((emp) => ({
@@ -98,6 +98,45 @@ exports.getemployeedata = (req, res) => {
         // leavebalance: emp.leavebalance,
       }));
       res.status(200).json(serealizedData);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      res.status(500).json({ message: "Server error" });
+    });
+};
+
+exports.getoneemployeedata = (req, res) => {
+  const { empId } = req.params;
+  Employee.findById(empId)
+    .then((emp) => {
+      const empData = {
+        id: emp._id,
+        name: emp.name,
+        email: emp.email,
+        phonenumber: emp.phonenumber.toString(),
+        aadharnumber: emp.aadharnumber.toString(),
+        pannumber: emp.pannumber,
+        address: emp.address,
+        dateofbirth: emp.dateofbirth,
+        gender: emp.gender,
+        maritalstatus: emp.maritalstatus,
+        emergencycontactname: emp.emergencycontactname,
+        emergencycontactnumber: emp.emergencycontactnumber.toString(),
+        accountnumber: emp.accountnumber.toString(),
+        ifsccode: emp.ifsccode,
+        department: emp.department,
+        designation: emp.designation,
+        joiningdate: emp.joiningdate.toISOString().slice(0, 10),
+        employmentstatus: emp.employmentstatus,
+        probationenddate: emp.probationenddate.toISOString().slice(0, 10),
+        confirmationdate: emp.confirmationdate.toISOString().slice(0, 10),
+        salary: emp.salary,
+        managername: emp.managername,
+        casualleaves: emp.casualleaves,
+        earnedleaves: emp.earnedleaves,
+        maternityleaves: emp.maternityleaves,
+      };
+      res.status(200).json(empData);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
@@ -135,7 +174,6 @@ exports.updateEmployeeById = (req, res) => {
     confirmationdate,
     salary,
     managername,
-    // leavebalance,
   } = req.body;
   Employee.findByIdAndUpdate(
     empId,
@@ -152,7 +190,51 @@ exports.updateEmployeeById = (req, res) => {
       confirmationdate,
       salary,
       managername,
-      // leavebalance,
+    },
+    { new: true }
+  )
+    .then((updatedEmployee) => {
+      if (!updatedEmployee) {
+        return res.status(404).json({ message: "Employee Not Found" });
+      }
+      res.status(200).json({ message: "Employee Updated Successfully" });
+    })
+    .catch((error) => {
+      console.error("Error Updating Employee Details:", error);
+      res.status(500).json({ message: "Server Error" });
+    });
+};
+exports.updateoneEmployeeById = (req, res) => {
+  const empId = req.params.empId;
+  const {
+    name,
+    phonenumber,
+    aadharnumber,
+    pannumber,
+    address,
+    dateofbirth,
+    gender,
+    maritalstatus,
+    emergencycontactname,
+    emergencycontactnumber,
+    accountnumber,
+    ifsccode,
+  } = req.body;
+  Employee.findByIdAndUpdate(
+    empId,
+    {
+      name,
+      phonenumber,
+      aadharnumber,
+      pannumber,
+      address,
+      dateofbirth,
+      gender,
+      maritalstatus,
+      emergencycontactname,
+      emergencycontactnumber,
+      accountnumber,
+      ifsccode,
     },
     { new: true }
   )
@@ -186,7 +268,6 @@ exports.signinemp = (req, res) => {
             const phonenumber = emp.phonenumber.toString();
             const department = emp.department;
             const designation = emp.designation;
-            const leavebalance = emp.leavebalance;
             const ispupdated = emp.ispassupdated;
             const token = jwt.sign(
               { empId: id, empEmail: empemail },
@@ -203,7 +284,6 @@ exports.signinemp = (req, res) => {
               phonenumber,
               department,
               designation,
-              leavebalance,
             });
           } else {
             res.status(401).json({ error: "Invalid Password" });
@@ -222,7 +302,6 @@ exports.signinemp = (req, res) => {
               const phonenumber = emp.phonenumber.toString();
               const department = emp.department;
               const designation = emp.designation;
-              const leavebalance = emp.leavebalance;
               const ispupdated = emp.ispassupdated;
               const token = jwt.sign(
                 { empId: id, empEmail: empemail },
@@ -239,7 +318,6 @@ exports.signinemp = (req, res) => {
                 phonenumber,
                 department,
                 designation,
-                leavebalance,
               });
             }
           });

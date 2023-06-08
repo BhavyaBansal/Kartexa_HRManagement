@@ -47,7 +47,7 @@ exports.signin = (req, res) => {
             const token = jwt.sign(
               { hrId: id, email: hr.email },
               "secret-key-top-secret",
-              { expiresIn: "1h" }
+              { expiresIn: "1d" }
             );
             res.status(200).json({ token, id, ema });
           }

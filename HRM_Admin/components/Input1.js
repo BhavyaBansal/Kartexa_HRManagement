@@ -1,7 +1,7 @@
 import {View, TextInput, StyleSheet, Dimensions} from 'react-native';
 import Colors from '../constants/colors';
 const Width = Dimensions.get('window').width;
-function Input1({placeValue, onChangeProp, onPressInProp, inputValue}) {
+function Input1({placeValue, onChangeProp, onPressInProp, inputValue,secure,editable}) {
   return (
     <View style={styles.container}>
       <TextInput
@@ -9,7 +9,9 @@ function Input1({placeValue, onChangeProp, onPressInProp, inputValue}) {
         style={styles.text}
         placeholder={placeValue}
         onPressIn={onPressInProp}
-        value={inputValue}></TextInput>
+        value={inputValue}
+        secureTextEntry={secure}
+        editable={editable}></TextInput>
     </View>
   );
 }
