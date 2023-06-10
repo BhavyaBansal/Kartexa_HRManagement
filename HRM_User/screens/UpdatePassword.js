@@ -37,10 +37,12 @@ function UpdatePassword({navigation, route}) {
       <Heading>Change Your Password</Heading>
       <Input1
         placeValue={'Updated Password'}
-        onChangeProp={setPassInput}></Input1>
+        onChangeProp={setPassInput}
+        secure={true}></Input1>
       <Input1
         placeValue={'Confirm Password'}
-        onChangeProp={setCPassInput}></Input1>
+        onChangeProp={setCPassInput}
+        secure={true}></Input1>
       <CustomButton onPressProp={updatePassHandler}>Update</CustomButton>
     </View>
   );

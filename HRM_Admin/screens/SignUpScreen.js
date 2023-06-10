@@ -65,7 +65,8 @@ function SignUpScreen({navigation}) {
         <Input1 placeValue="Email" onChangeProp={getEmailHandler}></Input1>
         <Input1
           placeValue="Password"
-          onChangeProp={getPasswordhandler}></Input1>
+          onChangeProp={getPasswordhandler}
+          secure={true}></Input1>
         <CustomButton onPressProp={handleSignUp}>Sign up</CustomButton>
         <Text style={styles.Or}>or</Text>
         {/* <Text style={styles.Or}>or</Text>

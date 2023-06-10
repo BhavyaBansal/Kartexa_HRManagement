@@ -26,20 +26,16 @@ function AddEmployeeForm({route, navigation}) {
     setShow(Platform.OS === 'ios');
     setSelectedDate(currDate);
     let tempDate = new Date(currDate);
-    let fDate =
-      tempDate.getFullYear() +
-      '-' +
-      (tempDate.getMonth() + 1) +
-      '-' +
-      tempDate.getDate();
+    let newDate = new Date(currDate);
+    newDate.setTime(tempDate.getTime() + 19800 * 1000);
     if (type === 'Joining') {
-      setJoiningText(fDate);
+      setJoiningText(newDate.toISOString());
     }
     if (type === 'Probation') {
-      setProbationText(fDate);
+      setProbationText(newDate.toISOString());
     }
     if (type === 'Confirmation') {
-      setConfirmationText(fDate);
+      setConfirmationText(newDate.toISOString());
     }
   };
   const showMode = val => {
@@ -207,7 +203,9 @@ function AddEmployeeForm({route, navigation}) {
       <Input1
         placeValue={'Enter Joining Date'}
         onPressInProp={() => showMode('Joining')}
-        inputValue={joiningText}></Input1>
+        inputValue={
+          joiningText === '' ? '' : joiningText.slice(0, 10)
+        }></Input1>
       {show && (
         <DateTimePicker
           // testID="dateTimePicker"
@@ -234,11 +232,15 @@ function AddEmployeeForm({route, navigation}) {
       <Input1
         placeValue={'Enter Probation Date'}
         onPressInProp={() => showMode('Probation')}
-        inputValue={probationText}></Input1>
+        inputValue={
+          probationText === '' ? '' : probationText.slice(0, 10)
+        }></Input1>
       <Input1
         placeValue={'Enter Confirmation Date'}
         onPressInProp={() => showMode('Confirmation')}
-        inputValue={confirmationText}></Input1>
+        inputValue={
+          confirmationText === '' ? '' : confirmationText.slice(0, 10)
+        }></Input1>
       <Input1
         placeValue={'Enter Salary'}
         onChangeProp={event => setVariousFieldValues(event, 'salary')}></Input1>

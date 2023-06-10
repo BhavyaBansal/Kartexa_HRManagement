@@ -73,7 +73,8 @@ function SignInScreen({navigation}) {
         <Input2
           placeholder={'Enter Password'}
           type={'default'}
-          onChangeTextProp={getPasswordHandler}>
+          onChangeTextProp={getPasswordHandler}
+          secure={true}>
           Password:
         </Input2>
         <Pressable style={styles.forget} onPress={forgotPasswordHandler}>

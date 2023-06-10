@@ -27,14 +27,11 @@ function UpdateDetailsScreen({route, navigation}) {
     setShow(Platform.OS === 'ios');
     setSelectedDate(currDate);
     let tempDate = new Date(currDate);
-    let fDate =
-      tempDate.getFullYear() +
-      '-' +
-      (tempDate.getMonth() + 1) +
-      '-' +
-      tempDate.getDate();
+    let newDate = new Date(currDate);
+    newDate.setTime(tempDate.getTime() + 19800 * 1000);
+    console.log(newDate.toISOString());
     if (type === 'DOB') {
-      setDOB(fDate);
+      setDOB(newDate.toISOString());
     }
   };
   const showMode = val => {
@@ -160,7 +157,7 @@ function UpdateDetailsScreen({route, navigation}) {
       <Input1
         placeValue={'Enter Date of Birth'}
         onPressInProp={() => showMode('DOB')}
-        inputValue={dob}></Input1>
+        inputValue={dob === '' || dob === null ? '' : dob.slice(0, 10)}></Input1>
       {show && (
         <DateTimePicker
           // testID="dateTimePicker"

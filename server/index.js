@@ -5,8 +5,8 @@ const bodyParser = require("body-parser");
 const authHrRoutes = require("./routes/auth");
 const addEmployeeRoutes = require("./routes/employee");
 const clockinoutRoutes = require("./routes/clockinout");
+const imageRoutes = require("./routes/image");
 const MongoDbStore = require("connect-mongo");
-// const multer = require('')
 const session = require("express-session");
 const app = express();
 const PORT = 3000;
@@ -53,11 +53,13 @@ app.use(
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 24 Hours
   })
 );
-app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/auth", authHrRoutes);
 app.use("/api/employee", addEmployeeRoutes);
 app.use("/api/clockinout", clockinoutRoutes);
+app.use("/api/image", imageRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

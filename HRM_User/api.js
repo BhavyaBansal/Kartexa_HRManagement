@@ -125,3 +125,36 @@ export const getidbyemail = email => {
     },
   );
 };
+
+export const uploadImage = (empId, name, url) => {
+  return axios.post(
+    `${API_BASE_URL}/image/uploadImage`,
+    {
+      empId,
+      name,
+      url,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const findImageUrlById = empId => {
+  return axios.post(
+    `${API_BASE_URL}/image/findImageUrlById`,
+    {empId},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const deletetheImage = empId => {
+  console.log('Delete axios');
+  return axios.delete(`${API_BASE_URL}/image/deleteImage/${empId}`);
+};

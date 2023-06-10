@@ -1,7 +1,14 @@
 import {View, TextInput, StyleSheet, Dimensions} from 'react-native';
 import Colors from '../constants/colors';
 const Width = Dimensions.get('window').width;
-function Input1({placeValue, onChangeProp, onPressInProp, inputValue,secure,editable}) {
+function Input1({
+  placeValue,
+  onChangeProp,
+  onPressInProp,
+  inputValue,
+  secure,
+  editable,
+}) {
   return (
     <View style={styles.container}>
       <TextInput
@@ -19,7 +26,7 @@ export default Input1;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.blue100,
-    width: Width * 0.7,
+    width: Width * 0.8,
     borderRadius: 10,
     margin: 10,
   },
