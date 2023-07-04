@@ -377,3 +377,26 @@ exports.checkforpassupdated = (req, res) => {
     }
   });
 };
+
+exports.allEmployeesObject = (req, res) => {
+  const hrId = req.params;
+  Employee.find(hrId)
+    .then((data) => {
+      const serealizedData = data.map((emp) => ({
+        key: emp._id,
+        value: emp.name + "   " + emp.designation + "   " + emp.department,
+        values: {
+          details: emp.name + "   " + emp.designation + "   " + emp.department,
+          email: emp.email,
+          status: null,
+        },
+        // department: emp.department,
+        // designation: emp.designation,
+      }));
+      res.status(200).json(serealizedData);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+      res.status(500).json({ message: "Server error" });
+    });
+};

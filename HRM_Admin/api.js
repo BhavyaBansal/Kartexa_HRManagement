@@ -127,6 +127,10 @@ export const getemployeedata = hrId => {
   // console.log(hrId, 'Hr');
   return axios.get(`${API_BASE_URL}/employee/getemployeedata/${hrId}`);
 };
+export const getemployeesobject = hrId => {
+  // console.log(hrId, 'Hr');
+  return axios.get(`${API_BASE_URL}/employee/getemployeesobject/${hrId}`);
+};
 
 export const deletedEmployee = empId => {
   // console.log(empId, 'Employee');
@@ -186,6 +190,42 @@ export const checkforpassupdated = id => {
   return axios.post(
     `${API_BASE_URL}/employee/checkforpassupdated`,
     {id},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const schedulemeet = (
+  hrId,
+  topic,
+  description,
+  goals,
+  teamname,
+  teamsize,
+  date,
+  time,
+  duration,
+  link,
+  participants,
+) => {
+  return axios.post(
+    `${API_BASE_URL}/meeting/schedulemeet`,
+    {
+      hrId,
+      topic,
+      description,
+      goals,
+      teamname,
+      teamsize,
+      date,
+      time,
+      duration,
+      link,
+      participants,
+    },
     {
       headers: {
         'content-type': 'application/json',

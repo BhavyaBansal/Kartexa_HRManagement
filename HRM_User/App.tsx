@@ -10,6 +10,8 @@ import ForgotPassword from './screens/ForgotPassword';
 import VerificationCodeScreen from './screens/VerificationCodeScreen';
 import AccountScreen from './screens/AccountScreen';
 import UpdateDetailsScreen from './screens/UpdateDetailsScreen';
+import CalendarScreen from './screens/CalendarScreen';
+import MeetingDetailsScreen from './screens/MeetingDetailsScreen';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -19,7 +21,7 @@ function App() {
           contentStyle: {backgroundColor: Colors.white100},
           headerShadowVisible: false,
           headerTitleAlign: 'center',
-          headerTitleStyle:{fontWeight:'bold'}
+          headerTitleStyle: {fontWeight: 'bold'},
         }}>
         <Stack.Screen
           name="SignIn"
@@ -63,6 +65,16 @@ function App() {
           name="UpdateDetails"
           component={UpdateDetailsScreen}
           options={{title: 'UPDATE DETAILS'}}
+        />
+        <Stack.Screen
+          name="Calendar"
+          component={CalendarScreen}
+          options={{title: 'CALENDAR'}}
+        />
+        <Stack.Screen
+          name="Meeting"
+          component={MeetingDetailsScreen}
+          options={{title: 'MEETING DETAILS'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -158,3 +158,31 @@ export const deletetheImage = empId => {
   console.log('Delete axios');
   return axios.delete(`${API_BASE_URL}/image/deleteImage/${empId}`);
 };
+
+export const getmeetingsbyId = (empId, date) => {
+  return axios.post(
+    `${API_BASE_URL}/meeting/getmeetbyid`,
+    {empId, date},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const changemeetstatus = (meetId, empId, status) => {
+  return axios.post(
+    `${API_BASE_URL}/meeting/changemeetstatus`,
+    {
+      meetId,
+      empId,
+      status,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

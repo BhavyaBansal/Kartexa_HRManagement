@@ -8,6 +8,8 @@ function Input1({
   inputValue,
   secure,
   editable,
+  multi,
+  spellcheck,
 }) {
   return (
     <View style={styles.container}>
@@ -18,7 +20,9 @@ function Input1({
         onPressIn={onPressInProp}
         value={inputValue}
         secureTextEntry={secure}
-        editable={editable}></TextInput>
+        editable={editable}
+        multiline={multi}
+        spellCheck={spellcheck}></TextInput>
     </View>
   );
 }

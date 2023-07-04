@@ -6,6 +6,7 @@ const authHrRoutes = require("./routes/auth");
 const addEmployeeRoutes = require("./routes/employee");
 const clockinoutRoutes = require("./routes/clockinout");
 const imageRoutes = require("./routes/image");
+const meetingRoutes = require("./routes/meeting");
 const MongoDbStore = require("connect-mongo");
 const session = require("express-session");
 const app = express();
@@ -25,6 +26,7 @@ const PORT = 3000;
 mongoose.set("strictQuery", false);
 const url =
   "mongodb+srv://bhavyabansal0916:y3pSoxrLeu64jWCP@cluster0.vpofow2.mongodb.net/HRM";
+// mongodb+srv://bhavyabansal0916:<password>@cluster0.vpofow2.mongodb.net/
 mongoose.connect(url, {
   useNewUrlParser: true,
   // useCreateIndex: true,
@@ -60,6 +62,7 @@ app.use("/api/auth", authHrRoutes);
 app.use("/api/employee", addEmployeeRoutes);
 app.use("/api/clockinout", clockinoutRoutes);
 app.use("/api/image", imageRoutes);
+app.use("/api/meeting", meetingRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

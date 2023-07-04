@@ -15,6 +15,9 @@ function NavigationFooter(props) {
   function openHomeScreenHandler() {
     navigation.navigate('EmployeeHome', {employee: empData});
   }
+  function openCalendarScreen() {
+    navigation.navigate('Calendar', {empId: empData.empid});
+  }
   return (
     <View style={styles.outerContainer}>
       <View style={styles.iconsContainer}>
@@ -24,11 +27,15 @@ function NavigationFooter(props) {
           <FontAwesome5 name="home" size={25} style={styles.icons} />
         </Pressable>
         <Ionicons name="mail" size={27} style={styles.icons} />
-        <MaterialCommunityIcons
-          name="calendar-month"
-          size={30}
-          style={styles.icons}
-        />
+        <Pressable
+          android_ripple={{color: '#ccc', borderless: true}}
+          onPress={openCalendarScreen}>
+          <MaterialCommunityIcons
+            name="calendar-month"
+            size={30}
+            style={styles.icons}
+          />
+        </Pressable>
         <Ionicons name="settings" size={27} style={styles.icons} />
         <Pressable
           onPress={openAccountPageHandler}

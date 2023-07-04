@@ -3,6 +3,8 @@ import Colors from '../constants/colors';
 const WIDTH = Dimensions.get('window').width;
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {getemployeesobject} from '../api';
 function NavigationFooter(props) {
   const navigation = useNavigation();
   const hrId = props.hrId;
@@ -13,6 +15,17 @@ function NavigationFooter(props) {
   function CheckOutPage() {
     navigation.navigate('CheckOut', {hrId});
   }
+  function scheduleMeetingPage() {
+    // console.log('Schedule Meeting');
+    getemployeesobject(hrId)
+      .then(emp => {
+        empObj = emp.data;
+        navigation.navigate('ScheduleMeet', {hrId, empObj});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   return (
     <View style={styles.outerContainer}>
       <View style={styles.iconsContainer}>
@@ -20,6 +33,11 @@ function NavigationFooter(props) {
           android_ripple={{color: '#ccc', borderless: true}}
           onPress={CheckInPage}>
           <MaterialCommunityIcons name="login" size={30} style={styles.icons} />
+        </Pressable>
+        <Pressable
+          android_ripple={{color: '#ccc', borderless: true}}
+          onPress={scheduleMeetingPage}>
+          <MaterialIcons name="schedule" size={30} style={styles.icons} />
         </Pressable>
         <Pressable
           android_ripple={{color: '#ccc', borderless: true}}

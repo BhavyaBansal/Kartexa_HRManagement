@@ -14,6 +14,7 @@ import VerificationCodeScreen from './screens/VerificationCodeScreen';
 import UpdatePassword from './screens/UpdatePassword';
 import CheckInScreen from './screens/CheckInScreen';
 import CheckOutScreen from './screens/CheckOutScreen';
+import ScheduleMeetScreen from './screens/ScheduleMeetScreen';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -83,6 +84,11 @@ function App() {
           name="CheckOut"
           component={CheckOutScreen}
           options={{title: ''}}
+        />
+        <Stack.Screen
+          name="ScheduleMeet"
+          component={ScheduleMeetScreen}
+          options={{title: 'SCHEDULE MEET'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

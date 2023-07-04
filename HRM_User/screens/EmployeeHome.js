@@ -1,9 +1,19 @@
-import {View, Text, StyleSheet, Alert, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Alert,
+  ScrollView,
+  Dimensions,
+} from 'react-native';
 import CustomButton from '../components/CustomButton';
 import {useEffect, useLayoutEffect, useState} from 'react';
 import Colors from '../constants/colors';
 import {clockIn, clockOut} from '../api';
 import NavigationFooter from '../components/NavigationFooter';
+// import Calendar from 'react-native-calendars/src/calendar';
+import Heading from '../components/Heading';
+const WIDTH = Dimensions.get('window').width;
 function EmployeeHome({route, navigation}) {
   const emp = route.params.employee;
   const [clockin, setClockin] = useState(true);
