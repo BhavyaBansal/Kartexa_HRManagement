@@ -18,6 +18,7 @@ function CalendarScreen({route, navigation}) {
   const empId = route.params.empId;
   const [selectedDate, setSelectedDate] = useState('');
   const [meetingsData, setMeetingsData] = useState([]);
+  const [currentDate, setCurrentDate] = useState(new Date());
   //   const [refreshing, setRefreshing] = useState(false);
   // const [meetStatus, setMeetStatus] = useState('');
   //   const onRefresh = useCallback(() => {
@@ -48,7 +49,13 @@ function CalendarScreen({route, navigation}) {
   function openMeetingDetailsPage(meetingDetails) {
     navigation.navigate('Meeting', {meetingDetails});
   }
-  //   console.log(meetingsData);
+  // console.log(
+  //   currentDate.getFullYear() +
+  //     '-' +
+  //     currentDate.getMonth() +
+  //     '-' +
+  //     currentDate.getDate(),
+  // );
   return (
     <ScrollView
       nestedScrollEnabled={true}
@@ -65,9 +72,24 @@ function CalendarScreen({route, navigation}) {
           markedDates={{
             [selectedDate]: {selected: true, selectedColor: 'pink'},
           }}
+          // minDate={new Date().getDate()}
+          minDate={
+            currentDate.getFullYear() +
+            '-' +
+            (currentDate.getMonth() + 1) +
+            '-' +
+            currentDate.getDate()
+          }
         />
       </View>
       <Heading>Meetings</Heading>
+      <Text style={styles.note}>
+        {selectedDate === ''
+          ? 'No Date Selected...'
+          : meetingsData.length === 0
+          ? 'No Meetings...🥳'
+          : ''}
+      </Text>
       <ScrollView
         alwaysBounceVertical={true}
         style={styles.meetingsContainer}
@@ -132,7 +154,7 @@ function CalendarScreen({route, navigation}) {
           </View>
         ))}
       </ScrollView>
-      <Heading>Leaves</Heading>
+      {/* <Heading>Leaves</Heading> */}
     </ScrollView>
   );
 }
@@ -173,5 +195,10 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginVertical: 4,
     elevation: 4,
+  },
+  note: {
+    color: '#342e2e',
+    letterSpacing: 0.5,
+    fontSize: 14,
   },
 });

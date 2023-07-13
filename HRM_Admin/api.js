@@ -233,3 +233,44 @@ export const schedulemeet = (
     },
   );
 };
+
+export const getcurrentmonthleaves = (hrId, month, status) => {
+  return axios.post(
+    `${API_BASE_URL}/leave/getmonthleaves2`,
+    {hrId, month, status},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const updatestatusbyid = (leaveId, status) => {
+  return axios.post(
+    `${API_BASE_URL}/leave/updatestatusbyid`,
+    {leaveId, status},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const getoneemployeedata = empId => {
+  // console.log(hrId, 'Hr');
+  return axios.get(`${API_BASE_URL}/employee/getoneemployeedata/${empId}`);
+};
+
+export const updateLeavesById = (empId, type, noOfDays) => {
+  return axios.post(
+    `${API_BASE_URL}/employee/updateLeavesById`,
+    {empId, type, noOfDays},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

@@ -8,6 +8,8 @@ function Input1({
   inputValue,
   secure,
   editable,
+  multi,
+  spellcheck,
 }) {
   return (
     <View
@@ -22,7 +24,9 @@ function Input1({
         onPressIn={onPressInProp}
         value={inputValue}
         secureTextEntry={secure}
-        editable={editable}></TextInput>
+        editable={editable}
+        multiline={multi}
+        spellCheck={spellcheck}></TextInput>
     </View>
   );
 }
@@ -40,8 +44,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     color: Colors.grey200,
   },
-  noteditableText:{
-    backgroundColor:Colors.blue100,
-    opacity:0.6,
-  }
+  noteditableText: {
+    backgroundColor: Colors.blue100,
+    opacity: 0.6,
+  },
 });

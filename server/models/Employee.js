@@ -46,10 +46,29 @@ const employeeSchema = new Schema(
     probationenddate: { type: Date, required: true },
     confirmationdate: { type: Date },
     salary: { type: Number, required: true },
+    finalsalary: { type: Number, required: true, default: 0 },
     managername: { type: String, required: true },
-    casualleaves: { type: Number, default: 2 },
-    earnedleaves: { type: Number, default: 0 },
-    maternityleaves: { type: Number, default: 0 },
+
+    casualleaves: { type: Number, default: 2, required: true }, // it will decrease and reloaded every month
+    sickleaves: { type: Number, default: 0, required: true }, // it will increase and will be paid and reloaded every month
+    earnedleaves: { type: Number, default: 10, required: true }, // it will increase per year if casual leaves are not more than 24
+    maternityleaves: { type: Number, default: 30, required: true }, // it is for womens before or after giving birth
+    totalcasualleaves: { type: Number, default: 0, required: true }, // it will increase whenever a leave is made reloaded every year
+    totalsickleaves: { type: Number, default: 0, required: true },
+    totalearnedleaves: { type: Number, default: 0, required: true },
+    totalmaternityleaves: { type: Number, default: 0, required: true },
+    totalleavesmade: { type: Number, default: 0, required: true },
+    currentmonth: {
+      type: Number,
+      default: new Date().getMonth() + 1,
+      required: true,
+    },
+    currentyear: {
+      type: Number,
+      default: new Date().getFullYear(),
+      required: true,
+    },
+
     ispassupdated: { type: Boolean, enum: [true, false], default: false },
   },
   { timestamps: true }

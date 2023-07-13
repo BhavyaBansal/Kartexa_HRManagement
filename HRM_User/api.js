@@ -186,3 +186,43 @@ export const changemeetstatus = (meetId, empId, status) => {
     },
   );
 };
+
+export const insertleave = (
+  hrId,
+  empId,
+  leaveReason,
+  fromdate,
+  todate,
+  totalnoofdays,
+  leavetype,
+) => {
+  return axios.post(
+    `${API_BASE_URL}/leave/insertleave`,
+    {
+      hrId,
+      empId,
+      leaveReason,
+      fromdate,
+      todate,
+      totalnoofdays,
+      leavetype,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const getcurrentmonthleaves = (empId, month, type) => {
+  return axios.post(
+    `${API_BASE_URL}/leave/getmonthleaves`,
+    {empId, month, type},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

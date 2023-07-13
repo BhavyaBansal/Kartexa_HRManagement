@@ -26,6 +26,9 @@ function NavigationFooter(props) {
         console.log(error);
       });
   }
+  function openLeaveRequestPage() {
+    navigation.navigate('LeaveRequest', {hrId});
+  }
   return (
     <View style={styles.outerContainer}>
       <View style={styles.iconsContainer}>
@@ -38,6 +41,15 @@ function NavigationFooter(props) {
           android_ripple={{color: '#ccc', borderless: true}}
           onPress={scheduleMeetingPage}>
           <MaterialIcons name="schedule" size={30} style={styles.icons} />
+        </Pressable>
+        <Pressable
+          android_ripple={{color: '#ccc', borderless: true}}
+          onPress={openLeaveRequestPage}>
+          <MaterialCommunityIcons
+            name="note-check"
+            size={30}
+            style={styles.icons}
+          />
         </Pressable>
         <Pressable
           android_ripple={{color: '#ccc', borderless: true}}

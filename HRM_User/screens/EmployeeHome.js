@@ -5,22 +5,33 @@ import {
   Alert,
   ScrollView,
   Dimensions,
+  Pressable,
 } from 'react-native';
 import CustomButton from '../components/CustomButton';
 import {useEffect, useLayoutEffect, useState} from 'react';
 import Colors from '../constants/colors';
 import {clockIn, clockOut} from '../api';
 import NavigationFooter from '../components/NavigationFooter';
+import Octicons from 'react-native-vector-icons/Octicons';
 // import Calendar from 'react-native-calendars/src/calendar';
 import Heading from '../components/Heading';
+import SideBar from '../components/SideBar';
 const WIDTH = Dimensions.get('window').width;
 function EmployeeHome({route, navigation}) {
   const emp = route.params.employee;
+  const empId = emp.empid;
   const [clockin, setClockin] = useState(true);
   const [clockout, setClockout] = useState(false);
   const [inTime, setInTime] = useState('');
   const [clockId, setClockId] = useState('');
   //   console.log(emp);
+  const [sidebarIsVisible, setSideBarIsVisible] = useState(false);
+  function endSideBar() {
+    setSideBarIsVisible(false);
+  }
+  function showSidebar() {
+    setSideBarIsVisible(true);
+  }
   function logoutHandler() {}
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -31,6 +42,11 @@ function EmployeeHome({route, navigation}) {
             <Text onPress={logoutHandler} style={styles.logout}>
               Logout
             </Text>
+            <Pressable
+              android_ripple={{color: '#ccc', borderless: true}}
+              onPress={showSidebar}>
+              <Octicons name="three-bars" size={20} style={styles.icons} />
+            </Pressable>
           </View>
         );
       },
@@ -95,6 +111,12 @@ function EmployeeHome({route, navigation}) {
           )}
         </View>
       </ScrollView>
+      <SideBar
+        onCancel={endSideBar}
+        visible={sidebarIsVisible}
+        employeeId={empId}
+        hrId={emp.hrid}
+      />
       <NavigationFooter emp={emp}></NavigationFooter>
     </>
   );
@@ -111,6 +133,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   logout: {
     color: Colors.blue300,
@@ -127,5 +150,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#000000',
     letterSpacing: 1,
+  },
+  icons: {
+    color: 'black',
+    marginRight: 5,
+    marginLeft: 10,
   },
 });

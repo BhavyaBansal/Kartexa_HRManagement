@@ -17,5 +17,7 @@ router.post("/getidbyemail", employeeController.getIdFromEmail);
 router.post("/checkforpassupdated", employeeController.checkforpassupdated);
 router.get("/getoneemployeedata/:empId", employeeController.getoneemployeedata);
 router.get("/getemployeesobject/:hrId", employeeController.allEmployeesObject);
+router.post("/updateLeavesById", employeeController.updateLeavesById);
+router.post("/updatesalarybyleaves", employeeController.updateSalaryEachDay);
 // router.post('/login',hrController.login);
 module.exports = router;

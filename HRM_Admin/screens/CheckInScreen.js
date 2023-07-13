@@ -20,7 +20,7 @@ function CheckInScreen({route}) {
   }
   return (
     <View style={styles.outerContainer}>
-      {/* <Heading>Check In Details</Heading> */}
+      {/* <Heading>Clock In Details</Heading> */}
       <View style={styles.calendar}>
         <Calendar
           onDayPress={date => {

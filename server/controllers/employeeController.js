@@ -52,6 +52,7 @@ exports.addemployee = (req, res) => {
     probationenddate,
     confirmationdate,
     salary,
+    finalsalary: salary,
     managername,
     // leavebalance,
   });
@@ -399,4 +400,172 @@ exports.allEmployeesObject = (req, res) => {
       console.error("Error fetching data:", error);
       res.status(500).json({ message: "Server error" });
     });
+};
+
+exports.updateLeavesById = (req, res) => {
+  const { empId, type, noOfDays } = req.body;
+  Employee.findById(empId)
+    .then((emp) => {
+      if (!emp) {
+        res.status(401).json({ error: "Employee Id Not Found" });
+      } else {
+        let updatedSickLeaves = emp.sickleaves;
+        let updatedCasualLeaves = emp.casualleaves;
+        let updatedEarnedLeaves = emp.earnedleaves;
+        let updatedMaternityLeaves = emp.maternityleaves;
+        let totalCasualLeaves = emp.totalcasualleaves;
+        let totalSickLeaves = emp.totalsickleaves;
+        let totalEarnedLeaves = emp.totalearnedleaves;
+        let totalMaternityLeaves = emp.totalmaternityleaves;
+        let totalLeaves = emp.totalleavesmade;
+        if (type === "Sick") {
+          updatedSickLeaves += noOfDays;
+          totalSickLeaves += noOfDays;
+        }
+        if (type === "Casual") {
+          updatedCasualLeaves -= noOfDays;
+          totalCasualLeaves += noOfDays;
+        }
+        if (type === "Maternity") {
+          updatedMaternityLeaves -= noOfDays;
+          totalMaternityLeaves += noOfDays;
+        }
+        if (type === "Earned") {
+          updatedEarnedLeaves -= noOfDays;
+          totalEarnedLeaves += noOfDays;
+        }
+        totalLeaves += noOfDays;
+        Employee.findByIdAndUpdate(
+          empId,
+          {
+            casualleaves: updatedCasualLeaves,
+            sickleaves: updatedSickLeaves,
+            earnedleaves: updatedEarnedLeaves,
+            maternityleaves: updatedMaternityLeaves,
+            totalcasualleaves: totalCasualLeaves,
+            totalsickleaves: totalSickLeaves,
+            totalearnedleaves: totalEarnedLeaves,
+            totalmaternityleaves: totalMaternityLeaves,
+            totalleavesmade: totalLeaves,
+          },
+          { new: true }
+        )
+          .then((updatedEmployee) => {
+            if (!updatedEmployee) {
+              return res.status(404).json({ message: "Employee Not Found" });
+            }
+            res
+              .status(200)
+              .json({ message: "Employee Details Updated Successfully" });
+          })
+          .catch((error) => {
+            console.error("Error Updating Employee Details:", error);
+            res.status(500).json({ message: "Server Error" });
+          });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ message: "Server Error" });
+    });
+};
+
+exports.updateSalaryEachDay = (req, res) => {
+  const { empId } = req.body;
+  Employee.findById(empId).then((emp) => {
+    if (!emp) {
+      res.status(401).json({ error: "Employee Id Not Found" });
+    } else {
+      let updatedSickLeaves = emp.sickleaves;
+      let updatedCasualLeaves = emp.casualleaves;
+      let updatedMaternityLeaves = emp.maternityleaves;
+      let updatedEarnedLeaves = emp.earnedleaves;
+      let currentMonth = emp.currentmonth;
+      let currentYear = emp.currentyear;
+      let totalCasualLeaves = emp.totalcasualleaves;
+      let totalSickLeaves = emp.totalsickleaves;
+      let totalEarnedLeaves = emp.totalearnedleaves;
+      let totalMaternityLeaves = emp.totalmaternityleaves;
+      let totalLeaves = emp.totalleavesmade;
+      let Salary = emp.salary;
+      let finalSalary = emp.finalsalary;
+      let previousmonthSalary = 0;
+      let currmonth = new Date().getMonth() + 1;
+      let curryear = new Date().getFullYear();
+      if (updatedSickLeaves > 0) {
+        let amount = (Salary * 2) / 100;
+        amount = amount * updatedSickLeaves;
+        updatedSickLeaves = 0;
+        finalSalary -= amount;
+      }
+      if (updatedCasualLeaves < 0) {
+        let leaves = 0 - updatedCasualLeaves;
+        let amount = (Salary * 2) / 100;
+        amount = amount * leaves;
+        updatedCasualLeaves = 0;
+        finalSalary -= amount;
+      }
+      if (updatedMaternityLeaves < 0) {
+        let leaves = 0 - updatedMaternityLeaves;
+        let amount = (Salary * 2) / 100;
+        amount = amount * leaves;
+        updatedMaternityLeaves = 0;
+        finalSalary -= amount;
+      }
+      if (updatedEarnedLeaves < 0) {
+        let leaves = 0 - updatedEarnedLeaves;
+        let amount = (Salary * 2) / 100;
+        amount = amount * leaves;
+        updatedEarnedLeaves = 0;
+        finalSalary -= amount;
+      }
+      if (currmonth !== currentMonth) {
+        previousmonthSalary = finalSalary;
+        finalSalary = Salary;
+        updatedSickLeaves = 0;
+        updatedEarnedLeaves = 10;
+        updatedCasualLeaves = 2;
+        updatedMaternityLeaves = 30;
+        totalSickLeaves = 0;
+        totalEarnedLeaves = 0;
+        totalMaternityLeaves = 0;
+        currentMonth = currmonth;
+      }
+      if (curryear !== currentYear) {
+        currentYear = curryear;
+        if (totalCasualLeaves <= 24) {
+          updatedEarnedLeaves += 1;
+        }
+        totalCasualLeaves = 0;
+        totalLeaves = 0;
+      }
+      Employee.findByIdAndUpdate(
+        empId,
+        {
+          sickleaves: updatedSickLeaves,
+          casualleaves: updatedCasualLeaves,
+          earnedleaves: updatedEarnedLeaves,
+          maternityleaves: updatedMaternityLeaves,
+          currentmonth: currentMonth,
+          currentyear: currentYear,
+          totalcasualleaves: totalCasualLeaves,
+          totalsickleaves: totalSickLeaves,
+          totalearnedleaves: totalEarnedLeaves,
+          totalmaternityleaves: totalMaternityLeaves,
+          finalsalary: finalSalary,
+          totalleavesmade: totalLeaves,
+        },
+        { new: true }
+      )
+        .then((updatedEmployee) => {
+          if (!updatedEmployee) {
+            return res.status(404).json({ message: "Employee Not Found" });
+          }
+          res.status(200).json({ previousmonthsalary: previousmonthSalary });
+        })
+        .catch((error) => {
+          console.error("Error Updating Employee Details:", error);
+          res.status(500).json({ message: "Server Error" });
+        });
+    }
+  });
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Pressable, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import SignInScreen from './screens/SignInScreen';
@@ -12,6 +12,8 @@ import AccountScreen from './screens/AccountScreen';
 import UpdateDetailsScreen from './screens/UpdateDetailsScreen';
 import CalendarScreen from './screens/CalendarScreen';
 import MeetingDetailsScreen from './screens/MeetingDetailsScreen';
+import LeavesScreen from './screens/LeavesScreen';
+import LeaveForm from './screens/LeaveForm';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -76,11 +78,25 @@ function App() {
           component={MeetingDetailsScreen}
           options={{title: 'MEETING DETAILS'}}
         />
+        <Stack.Screen
+          name="Leave"
+          component={LeavesScreen}
+          options={{title: 'LEAVES'}}
+        />
+        <Stack.Screen
+          name="LeaveForm"
+          component={LeaveForm}
+          options={{title: 'LEAVE FORM'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({});
-
 export default App;
+
+const styles = StyleSheet.create({
+  icons: {
+    color: 'black',
+    alignSelf: 'flex-end',
+  },
+});

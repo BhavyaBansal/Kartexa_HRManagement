@@ -15,6 +15,7 @@ import UpdatePassword from './screens/UpdatePassword';
 import CheckInScreen from './screens/CheckInScreen';
 import CheckOutScreen from './screens/CheckOutScreen';
 import ScheduleMeetScreen from './screens/ScheduleMeetScreen';
+import LeaveRequestsScreen from './screens/LeaveRequestsScreen';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -25,15 +26,15 @@ function App() {
           headerShadowVisible: false,
         }}>
         <Stack.Screen
-          name="SignUp"
-          component={SignUpScreen}
+          name="SignIn"
+          component={SignInScreen}
           options={{
             title: '',
           }}
         />
         <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
+          name="SignUp"
+          component={SignUpScreen}
           options={{
             title: '',
           }}
@@ -78,17 +79,22 @@ function App() {
         <Stack.Screen
           name="CheckIn"
           component={CheckInScreen}
-          options={{title: ''}}
+          options={{title: 'Clock In Details'}}
         />
         <Stack.Screen
           name="CheckOut"
           component={CheckOutScreen}
-          options={{title: ''}}
+          options={{title: 'Clock Out Details'}}
         />
         <Stack.Screen
           name="ScheduleMeet"
           component={ScheduleMeetScreen}
           options={{title: 'SCHEDULE MEET'}}
+        />
+        <Stack.Screen
+          name="LeaveRequest"
+          component={LeaveRequestsScreen}
+          options={{title: ''}}
         />
       </Stack.Navigator>
     </NavigationContainer>
