@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 const SideBar = props => {
   const empId = props.employeeId;
   const hrId = props.hrId;
+  const empleavesdata = props.empleavesdata;
   const navigation = useNavigation();
   function openLeavesPage() {
     navigation.navigate('Leave', {empId, hrId});

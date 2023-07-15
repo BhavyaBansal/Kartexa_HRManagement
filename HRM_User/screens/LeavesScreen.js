@@ -10,7 +10,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {useState, useEffect} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../constants/colors';
-import {getcurrentmonthleaves} from '../api';
+import {getcurrentmonthleaves, updateSalaryEachDay} from '../api';
 import Heading from '../components/Heading';
 const WIDTH = Dimensions.get('window').width;
 const months = [
@@ -56,14 +56,22 @@ function LeavesScreen({route, navigation}) {
     setLeaveType(type);
     fetchLeavesHandler(type);
   }
+  function getLeavesDataHandler() {
+    const employeeLeavesData = updateSalaryEachDay(empId);
+    employeeLeavesData.then(response => {
+      // console.log(response.data);
+      navigation.navigate('LeavesDetails', {empleavesdata: response.data});
+    });
+  }
   return (
     <View style={styles.outerContainer}>
       {/* <Text>{hrId}</Text> */}
       <View style={styles.inRow}>
         <Pressable
-          android_ripple={{color: '#ccc', borderless: true, radius: 20}}>
+          android_ripple={{color: '#ccc', borderless: true, radius: 25}}
+          onPress={getLeavesDataHandler}>
           <MaterialCommunityIcons
-            name="bell"
+            name="card-account-details"
             size={30}
             style={styles.icons}></MaterialCommunityIcons>
         </Pressable>

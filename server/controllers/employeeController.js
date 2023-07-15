@@ -560,7 +560,23 @@ exports.updateSalaryEachDay = (req, res) => {
           if (!updatedEmployee) {
             return res.status(404).json({ message: "Employee Not Found" });
           }
-          res.status(200).json({ previousmonthsalary: previousmonthSalary });
+          const empLeavesData = {
+            id: updatedEmployee.id,
+            name: updatedEmployee.name,
+            salary: updatedEmployee.salary,
+            salarytillnow: updatedEmployee.finalsalary,
+            sickleaves: updatedEmployee.sickleaves,
+            casualleaves: updatedEmployee.casualleaves,
+            earnedleaves: updatedEmployee.earnedleaves,
+            maternityleaves: updatedEmployee.maternityleaves,
+            totalsickleaves: updatedEmployee.totalsickleaves,
+            totalcasualleaves: updatedEmployee.totalcasualleaves,
+            totalearnedleaves: updatedEmployee.totalearnedleaves,
+            totalmaternityleaves: updatedEmployee.totalmaternityleaves,
+            totalleaves: updatedEmployee.totalleavesmade,
+            previousmonthsalary: previousmonthSalary,
+          };
+          res.status(200).json({ empLeavesData });
         })
         .catch((error) => {
           console.error("Error Updating Employee Details:", error);

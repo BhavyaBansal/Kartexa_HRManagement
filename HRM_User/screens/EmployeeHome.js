@@ -10,7 +10,7 @@ import {
 import CustomButton from '../components/CustomButton';
 import {useEffect, useLayoutEffect, useState} from 'react';
 import Colors from '../constants/colors';
-import {clockIn, clockOut} from '../api';
+import {clockIn, clockOut, updateSalaryEachDay} from '../api';
 import NavigationFooter from '../components/NavigationFooter';
 import Octicons from 'react-native-vector-icons/Octicons';
 // import Calendar from 'react-native-calendars/src/calendar';
@@ -26,6 +26,7 @@ function EmployeeHome({route, navigation}) {
   const [clockId, setClockId] = useState('');
   //   console.log(emp);
   const [sidebarIsVisible, setSideBarIsVisible] = useState(false);
+  // const [empLeavesData, setEmpLeavesData] = useState([]);
   function endSideBar() {
     setSideBarIsVisible(false);
   }
@@ -94,6 +95,16 @@ function EmployeeHome({route, navigation}) {
         console.log(error);
       });
   }
+  function getLeavesDaily() {
+    const employeeLeavesData = updateSalaryEachDay(empId);
+    employeeLeavesData.then(response => {
+      // console.log(response.data);
+      // setEmpLeavesData(response.data);
+    });
+  }
+  useEffect(() => {
+    getLeavesDaily();
+  }, []);
   return (
     <>
       <ScrollView style={styles.outerContainer}>

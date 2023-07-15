@@ -226,3 +226,15 @@ export const getcurrentmonthleaves = (empId, month, type) => {
     },
   );
 };
+
+export const updateSalaryEachDay = empId => {
+  return axios.post(
+    `${API_BASE_URL}/employee/updatesalarybyleaves`,
+    {empId},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
