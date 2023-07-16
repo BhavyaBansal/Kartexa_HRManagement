@@ -104,3 +104,29 @@ exports.changeMeetStatus = (req, res) => {
       res.status(500).json({ message: "Server error" });
     });
 };
+
+exports.getAllMeetInFormat = (req, res) => {
+  const { hrId } = req.body;
+  Meeting.find({ hrId })
+    .then((meet) => {
+      const serializedData = meet.map((data) => ({
+        start: `${data.date.toISOString().slice(0, 10).toString()} ${
+          data.time.split(" ")[0].length <= 1
+            ? "0" + data.time.split(" ")[0]
+            : data.time.split(" ")[0]
+        }:${
+          data.time.split(" ")[1].length <= 1
+            ? "0" + data.time.split(" ")[1]
+            : data.time.split(" ")[1]
+        }:00`,
+        duration: "0" + data.duration + ":00:00",
+        note: data.topic,
+        id: data._id,
+      }));
+      res.status(200).json(serializedData);
+    })
+    .catch((error) => {
+      console.error("Error fetching Meetings:", error);
+      res.status(500).json({ message: "Server error" });
+    });
+};

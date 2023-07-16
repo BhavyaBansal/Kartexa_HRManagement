@@ -274,3 +274,15 @@ export const updateLeavesById = (empId, type, noOfDays) => {
     },
   );
 };
+
+export const getallmeetinformat = hrId => {
+  return axios.post(
+    `${API_BASE_URL}/meeting/getallmeetinformat`,
+    {hrId},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

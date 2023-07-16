@@ -13,6 +13,12 @@ const SideBar = props => {
   function openLeavesPage() {
     navigation.navigate('Leave', {empId, hrId});
   }
+  function openCompanyPolicyPage() {
+    navigation.navigate('Policy');
+  }
+  function openCompanyFAQPage() {
+    navigation.navigate('FAQ');
+  }
   return (
     <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
@@ -46,14 +52,16 @@ const SideBar = props => {
           <Pressable
             android_ripple={{color: '#ccc', borderless: true}}
             style={styles.inRow}
-            onPress={props.onCancel}>
+            onPress={props.onCancel}
+            onPressIn={openCompanyPolicyPage}>
             <MaterialIcons name="policy" size={30} color={Colors.blue100} />
             <Text style={styles.link}>Company Policy</Text>
           </Pressable>
           <Pressable
             android_ripple={{color: '#ccc', borderless: true}}
             style={styles.inRow}
-            onPress={props.onCancel}>
+            onPress={props.onCancel}
+            onPressIn={openCompanyFAQPage}>
             <AntDesign name="questioncircle" size={30} color={Colors.blue100} />
             <Text style={styles.link}>Company FAQ's</Text>
           </Pressable>

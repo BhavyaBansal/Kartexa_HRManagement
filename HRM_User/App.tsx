@@ -15,6 +15,8 @@ import MeetingDetailsScreen from './screens/MeetingDetailsScreen';
 import LeavesScreen from './screens/LeavesScreen';
 import LeaveForm from './screens/LeaveForm';
 import LeavesDetailsScreen from './screens/LeavesDetailsScreen';
+import CompanyPolicy from './screens/CompanyPolicy';
+import CompanyFAQ from './screens/CompanyFAQ';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -93,6 +95,16 @@ function App() {
           name="LeavesDetails"
           component={LeavesDetailsScreen}
           options={{title: 'MONTHLY DETAILS'}}
+        />
+        <Stack.Screen
+          name="Policy"
+          component={CompanyPolicy}
+          options={{title: ''}}
+        />
+        <Stack.Screen
+          name="FAQ"
+          component={CompanyFAQ}
+          options={{title: ''}}
         />
       </Stack.Navigator>
     </NavigationContainer>

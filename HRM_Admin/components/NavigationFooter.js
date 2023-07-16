@@ -20,7 +20,7 @@ function NavigationFooter(props) {
     getemployeesobject(hrId)
       .then(emp => {
         empObj = emp.data;
-        navigation.navigate('ScheduleMeet', {hrId, empObj});
+        navigation.navigate('Meetings', {hrId, empObj});
       })
       .catch(error => {
         console.log(error);

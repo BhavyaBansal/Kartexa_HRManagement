@@ -16,6 +16,7 @@ import CheckInScreen from './screens/CheckInScreen';
 import CheckOutScreen from './screens/CheckOutScreen';
 import ScheduleMeetScreen from './screens/ScheduleMeetScreen';
 import LeaveRequestsScreen from './screens/LeaveRequestsScreen';
+import MeetingsScreen from './screens/MeetingsScreen';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -90,6 +91,11 @@ function App() {
           name="ScheduleMeet"
           component={ScheduleMeetScreen}
           options={{title: 'SCHEDULE MEET'}}
+        />
+        <Stack.Screen
+          name="Meetings"
+          component={MeetingsScreen}
+          options={{title: 'Meetings'}}
         />
         <Stack.Screen
           name="LeaveRequest"

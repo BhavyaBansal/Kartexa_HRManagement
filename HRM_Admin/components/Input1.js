@@ -30,7 +30,7 @@ export default Input1;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.blue100,
-    width: Width * 0.8,
+    width: Width * 0.85,
     borderRadius: 10,
     margin: 10,
   },

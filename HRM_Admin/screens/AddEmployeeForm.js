@@ -14,6 +14,7 @@ import SelectDropdown from 'react-native-select-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from '../components/CustomButton';
 import {addemployee, sendEmail} from '../api';
+import Label from '../components/Label';
 const WIDTH = Dimensions.get('window').width;
 const departments = ['Sales', 'Marketing', 'Operations', 'Finance', 'HR', 'IT'];
 const employementstatus = ['Full-Time', 'Part-Time', 'Intern', 'Mentor'];
@@ -167,23 +168,27 @@ function AddEmployeeForm({route, navigation}) {
       style={styles.outerContainer}
       contentContainerStyle={{alignItems: 'center'}}>
       <Heading>Employee Form</Heading>
+      <Label>Name:</Label>
       <Input1
         placeValue={'Enter Name'}
         onChangeProp={event => setVariousFieldValues(event, 'name')}></Input1>
+      <Label>Email:</Label>
       <Input1
         placeValue={'Enter Email'}
         onChangeProp={event => setVariousFieldValues(event, 'email')}></Input1>
+      <Label>Password:</Label>
       <Input1
         placeValue={'Enter Password'}
         onChangeProp={event =>
           setVariousFieldValues(event, 'password')
         }></Input1>
+      <Label>Phone Number:</Label>
       <Input1
         placeValue={'Enter Number'}
         onChangeProp={event => setVariousFieldValues(event, 'number')}></Input1>
-
+      <Label>Select Department:</Label>
       <View style={styles.selectView}>
-        <Text style={{alignSelf: 'flex-start'}}>Select Department:</Text>
+        {/* <Text style={{alignSelf: 'flex-start'}}>Select Department:</Text> */}
         <SelectDropdown
           data={departments}
           onSelect={(selectedItem, index) => {
@@ -193,13 +198,13 @@ function AddEmployeeForm({route, navigation}) {
           style={styles.dropdown}
         />
       </View>
-
+      <Label>Designation:</Label>
       <Input1
         placeValue={'Enter Designation'}
         onChangeProp={event =>
           setVariousFieldValues(event, 'designation')
         }></Input1>
-
+      <Label>Joining Date:</Label>
       <Input1
         placeValue={'Enter Joining Date'}
         onPressInProp={() => showMode('Joining')}
@@ -216,10 +221,11 @@ function AddEmployeeForm({route, navigation}) {
           onChange={onChange}
         />
       )}
+      <Label>Select Employement Status:</Label>
       <View style={styles.selectView}>
-        <Text style={{alignSelf: 'flex-start'}}>
+        {/* <Text style={{alignSelf: 'flex-start'}}>
           Select Employement Status:
-        </Text>
+        </Text> */}
         <SelectDropdown
           data={employementstatus}
           onSelect={(selectedItem, index) => {
@@ -229,21 +235,25 @@ function AddEmployeeForm({route, navigation}) {
           style={styles.dropdown}
         />
       </View>
+      <Label>Probation Date:</Label>
       <Input1
         placeValue={'Enter Probation Date'}
         onPressInProp={() => showMode('Probation')}
         inputValue={
           probationText === '' ? '' : probationText.slice(0, 10)
         }></Input1>
+      <Label>Confirmation Date:</Label>
       <Input1
         placeValue={'Enter Confirmation Date'}
         onPressInProp={() => showMode('Confirmation')}
         inputValue={
           confirmationText === '' ? '' : confirmationText.slice(0, 10)
         }></Input1>
+      <Label>Salary:</Label>
       <Input1
         placeValue={'Enter Salary'}
         onChangeProp={event => setVariousFieldValues(event, 'salary')}></Input1>
+      <Label>Manager Name:</Label>
       <Input1
         placeValue={'Enter Manager Name'}
         onChangeProp={event =>

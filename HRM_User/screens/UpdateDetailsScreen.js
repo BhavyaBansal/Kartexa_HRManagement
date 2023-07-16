@@ -15,6 +15,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import CustomButton from '../components/CustomButton';
 import Input1 from '../components/Input1';
 import Colors from '../constants/colors';
+import Label from '../components/Label';
 const WIDTH = Dimensions.get('window').width;
 function UpdateDetailsScreen({route, navigation}) {
   const empData = route.params.employeeData;
@@ -131,33 +132,44 @@ function UpdateDetailsScreen({route, navigation}) {
   }
   return (
     <ScrollView contentContainerStyle={{alignItems: 'center'}}>
+      <Label>Name:</Label>
       <Input1
         placeValue={'Enter Name'}
         onChangeProp={event => setVariousFieldValues(event, 'name')}
         inputValue={name}></Input1>
+      <Label>Email:</Label>
       <Input1 inputValue={email} editable={false}></Input1>
+      <Label>Phone Number:</Label>
       <Input1
         placeValue={'Enter PhoneNumber'}
         onChangeProp={event => setVariousFieldValues(event, 'number')}
         inputValue={number}></Input1>
+      <Label>Department:</Label>
       <Input1 inputValue={selectedDepartment} editable={false}></Input1>
+      <Label>Designation</Label>
       <Input1 inputValue={designation} editable={false}></Input1>
+      <Label>Aadhar Number:</Label>
       <Input1
         placeValue={'Enter Aadhar Number'}
         onChangeProp={event => setVariousFieldValues(event, 'aadhar')}
         inputValue={aadhar === '0' ? '' : aadhar}></Input1>
+      <Label>Pan Number:</Label>
       <Input1
         placeValue={'Enter Pan Number'}
         onChangeProp={event => setVariousFieldValues(event, 'pan')}
         inputValue={pannumber}></Input1>
+      <Label>Address:</Label>
       <Input1
         placeValue={'Enter Address'}
         onChangeProp={event => setVariousFieldValues(event, 'address')}
         inputValue={address}></Input1>
+      <Label>Date Of Birth:</Label>
       <Input1
         placeValue={'Enter Date of Birth'}
         onPressInProp={() => showMode('DOB')}
-        inputValue={dob === '' || dob === null ? '' : dob.slice(0, 10)}></Input1>
+        inputValue={
+          dob === '' || dob === null ? '' : dob.slice(0, 10)
+        }></Input1>
       {show && (
         <DateTimePicker
           // testID="dateTimePicker"
@@ -168,7 +180,7 @@ function UpdateDetailsScreen({route, navigation}) {
           onChange={onChange}
         />
       )}
-
+      <Label>Gender:</Label>
       <View style={styles.buttonsContainer}>
         <Pressable
           style={[
@@ -240,7 +252,7 @@ function UpdateDetailsScreen({route, navigation}) {
           </Text>
         </Pressable>
       </View>
-
+      <Label>Status:</Label>
       <View style={styles.buttonsContainer}>
         <Pressable
           style={[
@@ -275,29 +287,37 @@ function UpdateDetailsScreen({route, navigation}) {
           </Text>
         </Pressable>
       </View>
-
+      <Label>Emergency Contact Name:</Label>
       <Input1
         placeValue={'Enter Emergency Contact Name'}
         onChangeProp={event => setVariousFieldValues(event, 'ename')}
         inputValue={emergencycontactname}></Input1>
+      <Label>Emergency Contact Number:</Label>
       <Input1
         placeValue={'Enter Emergency Contact Number'}
         onChangeProp={event => setVariousFieldValues(event, 'enumber')}
         inputValue={
           emergencycontactnumber === '0' ? '' : emergencycontactnumber
         }></Input1>
+      <Label>Account Number:</Label>
       <Input1
         placeValue={'Enter Account Number'}
         onChangeProp={event => setVariousFieldValues(event, 'account')}
         inputValue={accountnumber === '0' ? '' : accountnumber}></Input1>
+      <Label>IFSC Code:</Label>
       <Input1
         placeValue={'Enter IFSC Code'}
         onChangeProp={event => setVariousFieldValues(event, 'ifsc')}
         inputValue={ifsccode}></Input1>
+      <Label>Employment Status:</Label>
       <Input1 inputValue={employementStatus} editable={false}></Input1>
+      <Label>Joining Date:</Label>
       <Input1 inputValue={joiningText} editable={false}></Input1>
+      <Label>Probation Date:</Label>
       <Input1 inputValue={probationText} editable={false}></Input1>
+      <Label>Confirmation Date:</Label>
       <Input1 inputValue={confirmationText} editable={false}></Input1>
+      <Label>Manager Name:</Label>
       <Input1 inputValue={manager} editable={false}></Input1>
       <CustomButton onPressProp={handleUpdateEmployee}>Update</CustomButton>
       <Text style={{marginBottom: 20}}></Text>

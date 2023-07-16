@@ -4,6 +4,7 @@ import Input1 from '../components/Input1';
 import {updatePassword} from '../api';
 import {useState} from 'react';
 import CustomButton from '../components/CustomButton';
+import Label from '../components/Label';
 function UpdatePassword({navigation, route}) {
   const email = route.params.email;
   const [pass, setPass] = useState('');
@@ -35,10 +36,12 @@ function UpdatePassword({navigation, route}) {
   return (
     <View style={styles.outerContainer}>
       <Heading>Change Your Password</Heading>
+      <Label>Password:</Label>
       <Input1
         placeValue={'Updated Password'}
         onChangeProp={setPassInput}
         secure={true}></Input1>
+      <Label>Confirm Password:</Label>
       <Input1
         placeValue={'Confirm Password'}
         onChangeProp={setCPassInput}

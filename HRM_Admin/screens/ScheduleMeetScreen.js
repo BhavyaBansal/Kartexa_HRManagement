@@ -6,8 +6,9 @@ import Colors from '../constants/colors';
 import Input1 from '../components/Input1';
 import CustomButton from '../components/CustomButton';
 import {schedulemeet, sendEmail} from '../api';
+import Label from '../components/Label';
 const WIDTH = Dimensions.get('window').width;
-function ScheduleMeetScreen({route}) {
+function ScheduleMeetScreen({route, navigation}) {
   const hrId = route.params.hrId;
   const empObj = route.params.empObj;
   // console.log(empObj);end
@@ -98,9 +99,10 @@ function ScheduleMeetScreen({route}) {
     )
       .then(() => {
         Alert.alert('Success', 'Meeting Scheduled Successfully');
+        navigation.navigate('Meetings', {hrId, empObj});
         for (let i = 0; i < finalData.length; i++) {
           const email = finalData[i].email;
-          // console.log(email);
+          console.log(email);
           let mailOptions = {
             from: 'kanhabansal0916@gmail.com',
             to: `${email}`,
@@ -116,7 +118,7 @@ function ScheduleMeetScreen({route}) {
                 <p>ThankYou!!</p>`,
           };
           sendEmail(mailOptions).then(() => {
-            console.log('Email Sent Successfully');
+            console.log('Emails Sent Successfully');
           });
         }
       })
@@ -129,9 +131,11 @@ function ScheduleMeetScreen({route}) {
     <ScrollView
       style={styles.outerContainer}
       contentContainerStyle={{alignItems: 'center'}}>
+      <Label>Meeting Topic:</Label>
       <Input1
         placeValue={'Enter Topic of Meeting'}
         onChangeProp={event => setVariousFieldValues(event, 'topic')}></Input1>
+      <Label>Meeting Description:</Label>
       <Input1
         placeValue={'Enter Description about Meeting'}
         multi={true}
@@ -139,17 +143,21 @@ function ScheduleMeetScreen({route}) {
         onChangeProp={event =>
           setVariousFieldValues(event, 'description')
         }></Input1>
+      <Label>Meeting Goals:</Label>
       <Input1
         placeValue={'Enter Goals for Meeting'}
         multi={true}
         spellcheck={true}
         onChangeProp={event => setVariousFieldValues(event, 'goals')}></Input1>
+      <Label>Team Name:</Label>
       <Input1
         placeValue={'Enter Team Name'}
         onChangeProp={event => setVariousFieldValues(event, 'name')}></Input1>
+      <Label>Team Size:</Label>
       <Input1
         placeValue={'Enter Team Size'}
         onChangeProp={event => setVariousFieldValues(event, 'size')}></Input1>
+      <Label>Meeting Date:</Label>
       <Input1
         placeValue={'Enter Meeting Date'}
         onPressInProp={() => showMode('date')}
@@ -161,8 +169,10 @@ function ScheduleMeetScreen({route}) {
           is24Hour={true}
           display="default"
           onChange={onChangeDate}
+          minimumDate={new Date()}
         />
       )}
+      <Label>Meeting Time:</Label>
       <Input1
         placeValue={'Enter Meeting Time'}
         onPressInProp={() => showMode('time')}
@@ -176,14 +186,17 @@ function ScheduleMeetScreen({route}) {
           onChange={onChangeTime}
         />
       )}
+      <Label>Meeting Duration:</Label>
       <Input1
         placeValue={'Enter Meet Duration'}
         onChangeProp={event =>
           setVariousFieldValues(event, 'duration')
         }></Input1>
+      <Label>Meeting Link:</Label>
       <Input1
         placeValue={'Enter Meet Link'}
         onChangeProp={event => setVariousFieldValues(event, 'link')}></Input1>
+      <Label>Select Meeting Participants:</Label>
       <View style={styles.dropdownContainer}>
         <MultipleSelectList
           setSelected={val => setSelectedPersons(val)}
