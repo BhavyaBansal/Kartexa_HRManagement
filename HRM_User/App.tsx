@@ -17,6 +17,7 @@ import LeaveForm from './screens/LeaveForm';
 import LeavesDetailsScreen from './screens/LeavesDetailsScreen';
 import CompanyPolicy from './screens/CompanyPolicy';
 import CompanyFAQ from './screens/CompanyFAQ';
+import TaskSubmission from './screens/TaskSubmission';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -105,6 +106,11 @@ function App() {
           name="FAQ"
           component={CompanyFAQ}
           options={{title: ''}}
+        />
+        <Stack.Screen
+          name="TaskSubmission"
+          component={TaskSubmission}
+          options={{title: 'Timesheet Submission'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

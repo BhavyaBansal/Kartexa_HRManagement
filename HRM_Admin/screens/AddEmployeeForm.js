@@ -195,6 +195,11 @@ function AddEmployeeForm({route, navigation}) {
             setSelectedDepartment(selectedItem);
             setDepartmentHandler(selectedItem);
           }}
+          buttonStyle={{
+            width: WIDTH * 0.85,
+            borderRadius: 10,
+            // backgroundColor: Colors.blue100,
+          }}
           style={styles.dropdown}
         />
       </View>
@@ -231,6 +236,11 @@ function AddEmployeeForm({route, navigation}) {
           onSelect={(selectedItem, index) => {
             setEmployementStatus(selectedItem);
             setEmployementStatusHandler(selectedItem);
+          }}
+          buttonStyle={{
+            width: WIDTH * 0.85,
+            borderRadius: 10,
+            // backgroundColor: Colors.blue100,
           }}
           style={styles.dropdown}
         />
@@ -274,7 +284,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   selectView: {
-    width: WIDTH * 0.7,
-    marginLeft: 10,
+    // width: WIDTH * 0.7,
+    // marginLeft: 10,
   },
 });

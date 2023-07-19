@@ -8,6 +8,8 @@ const clockinoutRoutes = require("./routes/clockinout");
 const imageRoutes = require("./routes/image");
 const meetingRoutes = require("./routes/meeting");
 const leaveRoutes = require("./routes/leave");
+const timesheetRoutes = require("./routes/timesheet");
+const holidayRoutes = require("./routes/holiday");
 const MongoDbStore = require("connect-mongo");
 const session = require("express-session");
 const app = express();
@@ -65,6 +67,8 @@ app.use("/api/clockinout", clockinoutRoutes);
 app.use("/api/image", imageRoutes);
 app.use("/api/meeting", meetingRoutes);
 app.use("/api/leave", leaveRoutes);
+app.use("/api/timesheet", timesheetRoutes);
+app.use("/api/holiday", holidayRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -238,3 +238,53 @@ export const updateSalaryEachDay = empId => {
     },
   );
 };
+
+export const uploadimageinfolder = () => {
+  return axios.post(`${API_BASE_URL}/image/uploadimageinfolder`);
+};
+
+export const addtimesheet = (
+  empId,
+  hrId,
+  name,
+  email,
+  phonenumber,
+  employmenttype,
+  duration,
+  taskdone,
+  image,
+  date,
+) => {
+  return axios.post(
+    `${API_BASE_URL}/timesheet/addtimesheetindb`,
+    {
+      empId,
+      hrId,
+      name,
+      email,
+      phonenumber,
+      employmenttype,
+      duration,
+      taskdone,
+      image,
+      date,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const getallholidays = hrId => {
+  return axios.post(
+    `${API_BASE_URL}/holiday/getallholidays`,
+    {hrId},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

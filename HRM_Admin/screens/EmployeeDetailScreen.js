@@ -1,4 +1,4 @@
-import {View, Text, StyleSheet, Pressable} from 'react-native';
+import {View, Text, StyleSheet, Pressable,ScrollView} from 'react-native';
 import Heading from '../components/Heading';
 import CustomButton from '../components/CustomButton';
 import {checkforpassupdated} from '../api';
@@ -20,7 +20,7 @@ function EmployeeDetailScreen({route, navigation}) {
   return (
     <View style={styles.outerContainer}>
       <Heading>{empData.name} Details</Heading>
-      <View>
+      <ScrollView>
         <View style={styles.detail}>
           <Text style={styles.detailLabel}>Name:</Text>
           <Text style={styles.detailData}>{empData.name}</Text>
@@ -184,7 +184,7 @@ function EmployeeDetailScreen({route, navigation}) {
           <Text style={styles.detailLabel}>Leave Balance:</Text>
           <Text style={styles.detailData}> {empData.leavebalance}</Text>
         </View> */}
-      </View>
+      </ScrollView>
       <CustomButton onPressProp={openUpdatePage}>Update Details</CustomButton>
     </View>
   );

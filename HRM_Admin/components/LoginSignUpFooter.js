@@ -30,17 +30,16 @@ function LoginSignUpFooter({helptext, link, onPressProp}) {
 export default LoginSignUpFooter;
 const styles = StyleSheet.create({
   outerContainer: {
-    bottom:0,
+    bottom: 0,
     width: WIDTH,
     height: WIDTH * 0.4,
     backgroundColor: Colors.blue100,
     padding: 10,
-    // marginTop: 20,
+    marginTop: 10,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
-
   },
   otherWays: {
     flexDirection: 'row',

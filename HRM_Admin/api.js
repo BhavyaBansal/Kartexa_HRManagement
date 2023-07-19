@@ -286,3 +286,27 @@ export const getallmeetinformat = hrId => {
     },
   );
 };
+
+export const getalltimesheetsbydate = (hrId, date) => {
+  return axios.post(
+    `${API_BASE_URL}/timesheet/getalltimesheetsbydate`,
+    {hrId, date},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const addholiday = (hrId,reason,description,date) =>{
+  return axios.post(
+    `${API_BASE_URL}/holiday/addholiday`,
+    {hrId, reason, description, date},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+}

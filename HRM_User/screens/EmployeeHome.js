@@ -10,15 +10,17 @@ import {
 import CustomButton from '../components/CustomButton';
 import {useEffect, useLayoutEffect, useState} from 'react';
 import Colors from '../constants/colors';
-import {clockIn, clockOut, updateSalaryEachDay} from '../api';
+import {clockIn, clockOut, updateSalaryEachDay, getallholidays} from '../api';
 import NavigationFooter from '../components/NavigationFooter';
 import Octicons from 'react-native-vector-icons/Octicons';
-// import Calendar from 'react-native-calendars/src/calendar';
+import Calendar from 'react-native-calendars/src/calendar';
 import Heading from '../components/Heading';
 import SideBar from '../components/SideBar';
+import Label from '../components/Label';
 const WIDTH = Dimensions.get('window').width;
 function EmployeeHome({route, navigation}) {
   const emp = route.params.employee;
+  // console.log(emp);
   const empId = emp.empid;
   const [clockin, setClockin] = useState(true);
   const [clockout, setClockout] = useState(false);
@@ -27,6 +29,9 @@ function EmployeeHome({route, navigation}) {
   //   console.log(emp);
   const [sidebarIsVisible, setSideBarIsVisible] = useState(false);
   // const [empLeavesData, setEmpLeavesData] = useState([]);
+  const [selectedDate, setSelectedDate] = useState('');
+  const [allHolidays, setAllHolidays] = useState([]);
+  const [singleHoliday, setSingleHoliday] = useState([]);
   function endSideBar() {
     setSideBarIsVisible(false);
   }
@@ -102,12 +107,36 @@ function EmployeeHome({route, navigation}) {
       // setEmpLeavesData(response.data);
     });
   }
+  function getAllHolidaysDaily() {
+    const holidays = getallholidays(emp.hrid);
+    holidays.then(response => {
+      // console.log(response.data);
+      setAllHolidays(response.data);
+    });
+  }
   useEffect(() => {
     getLeavesDaily();
+    getAllHolidaysDaily();
   }, []);
+  const markedHolidays = {
+    [selectedDate]: {selected: true, selectedColor: 'pink'},
+  };
+  if (allHolidays.length !== 0) {
+    allHolidays.map(holiday => {
+      markedHolidays[holiday.date] = {
+        selected: true,
+        selectedColor: '#1ce10b',
+      };
+    });
+  }
+  function closeHolidayNow() {
+    setSingleHoliday([]);
+  }
+  // console.log(markedHolidays);
+  let holidayy = [];
   return (
     <>
-      <ScrollView style={styles.outerContainer}>
+      <View style={styles.outerContainer}>
         <View style={styles.buttonContainer}>
           {clockin === true ? (
             <CustomButton onPressProp={clockInHandler}>ClockIn</CustomButton>
@@ -121,13 +150,52 @@ function EmployeeHome({route, navigation}) {
             ''
           )}
         </View>
-      </ScrollView>
-      <SideBar
-        onCancel={endSideBar}
-        visible={sidebarIsVisible}
-        employeeId={empId}
-        hrId={emp.hrid}
-      />
+
+        <View style={styles.calendar}>
+          <Calendar
+            onDayPress={date => {
+              setSelectedDate(date.dateString);
+              holidayy = allHolidays.filter(function (el) {
+                return el.date === date.dateString;
+              });
+              if (holidayy.length !== 0) {
+                setSingleHoliday(holidayy);
+              } else {
+                setSingleHoliday([]);
+              }
+              // console.log(holidayy);
+            }}
+            hideExtraDays={true}
+            markedDates={markedHolidays}
+            // minDate={new Date().getDate()}
+            minDate={new Date().toISOString()}
+          />
+        </View>
+        {singleHoliday.length !== 0 ? (
+          <>
+            <View style={styles.holidayContainer}>
+              <Label>Reason:</Label>
+              <Text style={styles.holidayText}>{singleHoliday[0].reason}</Text>
+              <Label>Description:</Label>
+              <Text style={styles.holidayText}>
+                {singleHoliday[0].description}
+              </Text>
+              <Text style={styles.okButton} onPress={closeHolidayNow}>
+                OK
+              </Text>
+            </View>
+            <Text style={styles.holidayNote}>It's a Holiday🥳</Text>
+          </>
+        ) : (
+          ''
+        )}
+        <SideBar
+          onCancel={endSideBar}
+          visible={sidebarIsVisible}
+          employeeId={empId}
+          hrId={emp.hrid}
+        />
+      </View>
       <NavigationFooter emp={emp}></NavigationFooter>
     </>
   );
@@ -166,5 +234,42 @@ const styles = StyleSheet.create({
     color: 'black',
     marginRight: 5,
     marginLeft: 10,
+  },
+  calendar: {
+    borderRadius: 10,
+    elevation: 4,
+    width: WIDTH * 0.95,
+    alignSelf: 'center',
+  },
+  holidayContainer: {
+    margin: 5,
+    width: WIDTH * 0.95,
+    height: WIDTH * 0.4,
+    elevation: 4,
+    backgroundColor: 'white',
+    padding: 5,
+    alignSelf: 'center',
+  },
+  holidayText: {
+    marginLeft: 10,
+    marginVertical: 5,
+    letterSpacing:0.5,
+    fontSize:12,
+    // color:'black'  
+  },
+  okButton: {
+    position: 'absolute',
+    right: 5,
+    bottom: 5,
+    padding: 5,
+    backgroundColor: Colors.blue400,
+    color: 'white',
+    borderRadius: 2,
+    fontWeight: 'bold',
+  },
+  holidayNote: {
+    alignSelf: 'center',
+    fontWeight:'bold',
+    color:'black',
   },
 });

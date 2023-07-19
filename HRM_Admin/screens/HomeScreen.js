@@ -9,8 +9,9 @@ import {
   Image,
 } from 'react-native';
 import {useEffect, useLayoutEffect, useState, useContext} from 'react';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../components/CustomButton';
 import Colors from '../constants/colors';
 import {getemployeedata, deletedEmployee, checkforpassupdated} from '../api';
@@ -83,10 +84,18 @@ function HomeScreen({navigation, route}) {
   function refreshHandler() {
     callForEmployeeData();
   }
+  function openAddHolidayForm() {
+    navigation.navigate('Holiday', {hrId: id});
+  }
   return (
     <View style={styles.outerContainer}>
       <View style={styles.buttonContainer}>
+        <CustomButton onPressProp={openAddHolidayForm}>
+          {/* <Ionicons name={'happy'} size={20} color="white" /> */}
+          Add Holiday
+        </CustomButton>
         <CustomButton onPressProp={addEmployeeHandler}>
+          {/* <AntDesign name={'adduser'} size={20} color="white" /> */}
           Add Employee
         </CustomButton>
         <Pressable

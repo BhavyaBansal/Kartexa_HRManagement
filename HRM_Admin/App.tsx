@@ -17,6 +17,8 @@ import CheckOutScreen from './screens/CheckOutScreen';
 import ScheduleMeetScreen from './screens/ScheduleMeetScreen';
 import LeaveRequestsScreen from './screens/LeaveRequestsScreen';
 import MeetingsScreen from './screens/MeetingsScreen';
+import TimesheetRecords from './screens/TimesheetRecords';
+import AddHolidayForm from './screens/AddHolidayForm';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -101,6 +103,16 @@ function App() {
           name="LeaveRequest"
           component={LeaveRequestsScreen}
           options={{title: ''}}
+        />
+        <Stack.Screen
+          name="Timesheet"
+          component={TimesheetRecords}
+          options={{title: 'Timesheet Records'}}
+        />
+        <Stack.Screen
+          name="Holiday"
+          component={AddHolidayForm}
+          options={{title: 'Holiday Form'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

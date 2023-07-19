@@ -4,6 +4,7 @@ const WIDTH = Dimensions.get('window').width;
 import {useNavigation} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {getemployeesobject} from '../api';
 function NavigationFooter(props) {
   const navigation = useNavigation();
@@ -29,6 +30,9 @@ function NavigationFooter(props) {
   function openLeaveRequestPage() {
     navigation.navigate('LeaveRequest', {hrId});
   }
+  function openTimesheetRecords() {
+    navigation.navigate('Timesheet', {hrId});
+  }
   return (
     <View style={styles.outerContainer}>
       <View style={styles.iconsContainer}>
@@ -50,6 +54,11 @@ function NavigationFooter(props) {
             size={30}
             style={styles.icons}
           />
+        </Pressable>
+        <Pressable
+          android_ripple={{color: '#ccc', borderless: true, radius: 25}}
+          onPress={openTimesheetRecords}>
+          <FontAwesome5 name="tasks" size={25} style={styles.icons} />
         </Pressable>
         <Pressable
           android_ripple={{color: '#ccc', borderless: true}}

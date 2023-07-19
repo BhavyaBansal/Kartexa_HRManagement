@@ -270,6 +270,7 @@ exports.signinemp = (req, res) => {
             const department = emp.department;
             const designation = emp.designation;
             const ispupdated = emp.ispassupdated;
+            const employmenttype = emp.employmentstatus;
             const token = jwt.sign(
               { empId: id, empEmail: empemail },
               "secret-key-top-secret",
@@ -285,6 +286,7 @@ exports.signinemp = (req, res) => {
               phonenumber,
               department,
               designation,
+              employmenttype,
             });
           } else {
             res.status(401).json({ error: "Invalid Password" });
@@ -304,6 +306,7 @@ exports.signinemp = (req, res) => {
               const department = emp.department;
               const designation = emp.designation;
               const ispupdated = emp.ispassupdated;
+              const employmenttype = emp.employmentstatus;
               const token = jwt.sign(
                 { empId: id, empEmail: empemail },
                 "secret-key-top-secret",
@@ -319,6 +322,7 @@ exports.signinemp = (req, res) => {
                 phonenumber,
                 department,
                 designation,
+                employmenttype,
               });
             }
           });

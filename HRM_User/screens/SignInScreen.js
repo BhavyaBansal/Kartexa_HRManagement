@@ -39,6 +39,7 @@ function SignInScreen({navigation}) {
           phonenumber: response.data.phonenumber,
           department: response.data.department,
           designation: response.data.designation,
+          employmenttype: response.data.employmenttype,
         };
         if (ispassupdated === false) {
           navigation.navigate('UpdatePassword', {id: employee.empid});

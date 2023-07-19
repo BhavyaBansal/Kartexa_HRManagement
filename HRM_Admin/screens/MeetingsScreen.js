@@ -15,7 +15,6 @@ import Colors from '../constants/colors';
 import WeeklyCalendar from 'react-native-weekly-calendar';
 import moment from 'moment';
 import {getallmeetinformat} from '../api';
-import Heading from '../components/Heading';
 const HEIGHT = Dimensions.get('window').height;
 const WIDTH = Dimensions.get('window').width;
 function MeetingsScreen({route, navigation}) {
@@ -42,13 +41,29 @@ function MeetingsScreen({route, navigation}) {
   useEffect(() => {
     getAllMeet();
   }, []);
-  let sampleData = new Array();
-  if (AllEvents.length !== 0) {
-    AllEvents.map(myevent => {
-      sampleData.push(myevent);
-    });
-  }
-  //   console.log(sampleData);
+  //   let sampleData = new Array(AllEvents);
+  //   if (AllEvents.length !== 0) {
+  //     AllEvents.map(myevent => {
+  //       sampleData.push(myevent);
+  //     });
+  //   }
+  console.log(AllEvents);
+  const sampleData = [
+    {
+      duration: '02:00:00',
+      id: '64b2f1e12223572cef721f33',
+      note: 'Check Status of work',
+      start: '2023-07-18 18:30:00',
+    },
+    {
+      duration: '01:00:00',
+      id: '64b3bd723b9bf1adb76d0743',
+      note: 'Check Work Of Frontend team',
+      start: '2023-07-17 08:05:00',
+    },
+  ];
+  console.log(typeof AllEvents);
+  console.log(typeof sampleData);
   return (
     <View style={styles.outerContainer}>
       <Modal
@@ -136,7 +151,8 @@ function MeetingsScreen({route, navigation}) {
                 <Pressable
                   style={styles.event}
                   android_ripple={{color: '#ccc', foreground: true}}
-                  onPress={() => showMeetingDetailHandler(event.id)}>
+                  //   onPress={() => showMeetingDetailHandler(event.id)}
+                >
                   <View style={styles.eventDuration}>
                     <View style={styles.durationContainer}>
                       <Text style={styles.durationText}>{startTime}</Text>
