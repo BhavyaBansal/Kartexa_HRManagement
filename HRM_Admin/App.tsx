@@ -19,6 +19,7 @@ import LeaveRequestsScreen from './screens/LeaveRequestsScreen';
 import MeetingsScreen from './screens/MeetingsScreen';
 import TimesheetRecords from './screens/TimesheetRecords';
 import AddHolidayForm from './screens/AddHolidayForm';
+import EmployeeReports from './screens/EmployeeReports';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -112,7 +113,12 @@ function App() {
         <Stack.Screen
           name="Holiday"
           component={AddHolidayForm}
-          options={{title: 'Holiday Form'}}
+          options={{title: 'Announcements Forms'}}
+        />
+        <Stack.Screen
+          name="Reports"
+          component={EmployeeReports}
+          options={{title: 'Employees Report'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

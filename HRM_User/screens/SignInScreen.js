@@ -14,6 +14,7 @@ import CustomButton from '../components/CustomButton';
 import LoginSignUpFooter from '../components/LoginSignUpFooter';
 import {useState, useContext} from 'react';
 import {signinemp} from '../api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import {SessionContext} from '../SessionContext';
 const WIDTH = Dimensions.get('window').width;
 function SignInScreen({navigation}) {
@@ -44,6 +45,9 @@ function SignInScreen({navigation}) {
         if (ispassupdated === false) {
           navigation.navigate('UpdatePassword', {id: employee.empid});
         } else {
+          // AsyncStorage.setItem('token', JSON.stringify(response.data.token));
+          // AsyncStorage.setItem('keepLoggedIn', JSON.stringify(true));
+          // AsyncStorage.setItem('employee', JSON.stringify(employee));
           navigation.navigate('EmployeeHome', {employee});
         }
         // const sessionToken = response.data.token;

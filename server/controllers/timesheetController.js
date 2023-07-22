@@ -49,10 +49,10 @@ exports.getAllTimesheetsByDate = (req, res) => {
         duration: item.duration,
         taskdone: item.taskdone,
         image: item.image,
-        date: item.date.toISOString().slice(0, 10),
+        date: item.date.toISOString(),
       }));
       const finaldata = serializedData.filter(function (el) {
-        return el.date === date.slice(0, 10);
+        return el.date.slice(0,10) === date.slice(0, 10);
       });
       res.status(200).json(finaldata);
     })

@@ -299,7 +299,7 @@ export const getalltimesheetsbydate = (hrId, date) => {
   );
 };
 
-export const addholiday = (hrId,reason,description,date) =>{
+export const addholiday = (hrId, reason, description, date) => {
   return axios.post(
     `${API_BASE_URL}/holiday/addholiday`,
     {hrId, reason, description, date},
@@ -309,4 +309,16 @@ export const addholiday = (hrId,reason,description,date) =>{
       },
     },
   );
-}
+};
+
+export const employeesweeklyreport = (hrId, weekArray) => {
+  return axios.post(
+    `${API_BASE_URL}/clockinout/employeesweeklyreport`,
+    {hrId, weekArray},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

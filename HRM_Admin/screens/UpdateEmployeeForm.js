@@ -13,7 +13,8 @@ import React, {useState} from 'react';
 import SelectDropdown from 'react-native-select-dropdown';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from '../components/CustomButton';
-import {updateemployee} from '../api';
+import {updateemployee, sendEmail} from '../api';
+import Email from '../constants/email';
 import Label from '../components/Label';
 const WIDTH = Dimensions.get('window').width;
 const departments = ['Sales', 'Marketing', 'Operations', 'Finance', 'HR', 'IT'];
@@ -22,6 +23,7 @@ function UpdateEmployeeForm({route, navigation}) {
   const empData = route.params.emp;
   const ispassupdated = route.params.ispassupdated;
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [updateEmail, setUpdateEmail] = useState(ispassupdated);
   const [show, setShow] = useState(false);
   const [type, setType] = useState('');
   const onChange = (event, sdate) => {
@@ -78,7 +80,9 @@ function UpdateEmployeeForm({route, navigation}) {
   const [salary, setSalary] = useState(empData.salary);
   const [manager, setManager] = useState(empData.managername);
   // const [leaveBal, setLeaveBal] = useState(empData.leavebalance);
-
+  function changeUpdateEmailStatus() {
+    setUpdateEmail(false);
+  }
   function setVariousFieldValues(event, type) {
     switch (type) {
       case 'name':
@@ -128,6 +132,51 @@ function UpdateEmployeeForm({route, navigation}) {
         Alert.alert('Success', 'Employee Updated Successfully');
         navigation.navigate('AdminHome', {email: hrEmail, id: hrId});
         // makeRefreshTrue(true);
+        if (ispassupdated === false) {
+          let mailOptions = {
+            from: Email.EMAIL,
+            to: `${email}`,
+            subject: 'Account Details Updated',
+            html: `<h2>Dear ${name} your account details are updated these are the details as follows:</h2><br>
+                <b>Email:</b>${email}<br>
+                <b>One Time Password:</b>${pass}<br>
+                <b>Phone Number:</b>${number}<br>
+                <b>Department:</b>${selectedDepartment}<br>
+                <b>Joining Date:</b>${joiningText}<br>
+                Do not share this password with anyone.<br>
+                In case of any doubt contact to ${hrEmail}.<br>
+                You can check more details on your account page.<br>
+                ThankYou!!`,
+          };
+          sendEmail(mailOptions)
+            .then(response => {
+              Alert.alert('Success', 'Details Updation Mail Sent Successfully');
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          let mailOptions = {
+            from: Email.EMAIL,
+            to: `${email}`,
+            subject: 'Account Details Updated',
+            html: `<h2>Dear ${name} your account details are updated these are the details as follows:</h2><br>
+                <b>Email:</b>${email}<br>
+                <b>Phone Number:</b>${number}<br>
+                <b>Department:</b>${selectedDepartment}<br>
+                <b>Joining Date:</b>${joiningText}<br>
+                In case of any doubt contact to ${hrEmail}.<br>
+                You can check more details on your account page.<br>
+                ThankYou!!`,
+          };
+          sendEmail(mailOptions)
+            .then(response => {
+              Alert.alert('Success', 'Details Updation Mail Sent Successfully');
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
       })
       .catch(error => {
         // Alert.alert('Error', 'Some Error occured');
@@ -148,7 +197,13 @@ function UpdateEmployeeForm({route, navigation}) {
       <Input1
         placeValue={'Enter Email'}
         onChangeProp={event => setVariousFieldValues(event, 'email')}
-        inputValue={email}></Input1>
+        inputValue={email}
+        editable={updateEmail === false ? true : false}></Input1>
+      <Text
+        style={styles.userUpdateEmailButton}
+        onPress={changeUpdateEmailStatus}>
+        Update Email?
+      </Text>
       {ispassupdated === false ? (
         <>
           <Label>Password:</Label>
@@ -254,8 +309,12 @@ const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
   },
-  selectView: {
-    // width: WIDTH * 0.7,
-    // marginLeft: 10,
+  userUpdateEmailButton: {
+    alignSelf: 'flex-start',
+    marginLeft: WIDTH * 0.08,
+    padding: 5,
+    backgroundColor: '#e42c2c',
+    color: 'white',
+    borderRadius: 5,
   },
 });

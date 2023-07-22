@@ -15,6 +15,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from '../components/CustomButton';
 import {addemployee, sendEmail} from '../api';
 import Label from '../components/Label';
+import Email from '../constants/email';
 const WIDTH = Dimensions.get('window').width;
 const departments = ['Sales', 'Marketing', 'Operations', 'Finance', 'HR', 'IT'];
 const employementstatus = ['Full-Time', 'Part-Time', 'Intern', 'Mentor'];
@@ -139,7 +140,7 @@ function AddEmployeeForm({route, navigation}) {
         navigation.navigate('AdminHome', {email: hrEmail, id: hrId});
 
         let mailOptions = {
-          from: 'kanhabansal0916@gmail.com',
+          from: Email.EMAIL,
           to: `${email}`,
           subject: 'Account Created',
           html: `<h2>Dear ${name} your account is created these are the details as follows:</h2><br>

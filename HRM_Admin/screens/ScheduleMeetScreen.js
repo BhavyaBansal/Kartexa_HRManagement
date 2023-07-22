@@ -7,6 +7,7 @@ import Input1 from '../components/Input1';
 import CustomButton from '../components/CustomButton';
 import {schedulemeet, sendEmail} from '../api';
 import Label from '../components/Label';
+import Email from '../constants/email';
 const WIDTH = Dimensions.get('window').width;
 function ScheduleMeetScreen({route, navigation}) {
   const hrId = route.params.hrId;
@@ -104,7 +105,7 @@ function ScheduleMeetScreen({route, navigation}) {
           const email = finalData[i].email;
           console.log(email);
           let mailOptions = {
-            from: 'kanhabansal0916@gmail.com',
+            from: Email.EMAIL,
             to: `${email}`,
             subject: 'Meeting Scheduled',
             html: `

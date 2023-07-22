@@ -11,18 +11,19 @@ function CustomButton({onPressProp, children}) {
 export default CustomButton;
 const styles = StyleSheet.create({
   buttonStyle: {
-    width: WIDTH * 0.34,
+    width: WIDTH * 0.35,
     height: WIDTH * 0.12,
     backgroundColor: Colors.blue400,
-    borderRadius:15,
-    margin:5,
-    alignItems:'center',
-    justifyContent:'center',
-    elevation:4,
+    borderRadius: 5,
+    margin: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 4,
+    // flexDirection: 'row',
   },
-  text:{
-    color:Colors.white100,
-    fontSize:16,
-    letterSpacing:0.5,
-  }
+  text: {
+    color: Colors.white100,
+    fontSize: 16,
+    letterSpacing: 0.5,
+  },
 });

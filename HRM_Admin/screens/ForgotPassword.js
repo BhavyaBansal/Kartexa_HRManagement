@@ -4,6 +4,7 @@ import Input1 from '../components/Input1';
 import CustomButton from '../components/CustomButton';
 import {useState} from 'react';
 import {sendEmail} from '../api';
+import Email from '../constants/email';
 const WIDTH = Dimensions.get('window').width;
 function ForgotPassword({navigation}) {
   const [email, setEmail] = useState('');
@@ -13,7 +14,7 @@ function ForgotPassword({navigation}) {
   function sendVerificationEmail() {
     const code = Math.floor(1000 + Math.random() * 9000);
     let mailOptions = {
-      from: 'kanhabansal0916@gmail.com',
+      from: Email.EMAIL,
       to: `${email}`,
       subject: 'Verification Code',
       html: `<h1>Your Verification Code for reset password is ${code}</h1>`,

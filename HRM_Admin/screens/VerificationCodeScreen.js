@@ -4,6 +4,7 @@ import Colors from '../constants/colors';
 import CustomButton from '../components/CustomButton';
 import {useState} from 'react';
 import {sendEmail} from '../api';
+import Email from '../constants/email';
 function VerificationCodeScreen({route, navigation}) {
   let code = route.params.code;
   const email = route.params.email;
@@ -14,7 +15,7 @@ function VerificationCodeScreen({route, navigation}) {
   function resendEmailVerificationCode() {
     const code = Math.floor(1000 + Math.random() * 9000);
     let mailOptions = {
-      from: 'kanhabansal0916@gmail.com',
+      from: Email.EMAIL,
       to: `${email}`,
       subject: 'Verification Code',
       html: `<h1>Your Verification Code for reset password is ${code}</h1>`,

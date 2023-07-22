@@ -1,10 +1,22 @@
-import {View, Text, StyleSheet, Image, Dimensions, Alert} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Dimensions,
+  Alert,
+  TextInput,
+  ScrollView
+} from 'react-native';
 import Label from '../components/Label';
 import Input1 from '../components/Input1';
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from '../components/CustomButton';
 import {addholiday} from '../api';
+import Heading from '../components/Heading';
+import Textarea from 'react-native-textarea';
+import Colors from '../constants/colors';
 const WIDTH = Dimensions.get('window').width;
 function AddHolidayForm({route}) {
   const hrId = route.params.hrId;
@@ -14,6 +26,7 @@ function AddHolidayForm({route}) {
   const [reason, setReason] = useState('');
   const [description, setDescription] = useState('');
   const [holidayDate, setHolidayDate] = useState('');
+  const [announcement, setAnnouncement] = useState('');
   const onChange = (event, sdate) => {
     const currDate = sdate || selectedDate;
     setShow(Platform.OS === 'ios');
@@ -50,8 +63,12 @@ function AddHolidayForm({route}) {
         console.log(error);
       });
   }
+  function setTextAreaValue(val) {
+    // console.log(val);
+    setAnnouncement(val);
+  }
   return (
-    <View style={styles.outerContainer}>
+    <ScrollView style={styles.outerContainer} contentContainerStyle={{alignItems:'center'}}>
       {/* <Text>{hrId}</Text> */}
       <Image
         source={require('../public/images/Ellipse2.png')}
@@ -61,6 +78,7 @@ function AddHolidayForm({route}) {
         source={require('../public/images/Ellipse3.png')}
         style={styles.ellipse3}
       />
+      <Heading>Holiday Form</Heading>
       <Label>Holiday Reason:</Label>
       <Input1
         placeValue={'Enter reason for holiday'}
@@ -89,15 +107,27 @@ function AddHolidayForm({route}) {
         />
       )}
       <CustomButton onPressProp={addHolidayHandler}>Submit</CustomButton>
-    </View>
+      <Heading>Announcement Form</Heading>
+      <View style={styles.container}>
+        <Textarea
+          containerStyle={styles.textareaContainer}
+          style={styles.textarea}
+          onChangeText={setTextAreaValue}
+          maxLength={120}
+          placeholder={'Enter your announcement here...'}
+          placeholderTextColor={'#4f4c4c'}
+          underlineColorAndroid={'transparent'}
+        />
+      </View>
+      <CustomButton>Submit</CustomButton>
+      <View style={{marginBottom:20}}></View>
+    </ScrollView>
   );
 }
 export default AddHolidayForm;
 const styles = StyleSheet.create({
   outerContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   ellipse2: {
     width: WIDTH * 0.6,
@@ -116,5 +146,19 @@ const styles = StyleSheet.create({
     top: WIDTH * 0.9,
     right: 0,
     zIndex: -1,
+  },
+  textareaContainer: {
+    width: WIDTH * 0.85,
+    height: 180,
+    padding: 5,
+    backgroundColor: Colors.blue100,
+    borderRadius: 10,
+    margin:10,
+  },
+  textarea: {
+    textAlignVertical: 'top',
+    height: 170,
+    fontSize: 14,
+    color: 'black',
   },
 });

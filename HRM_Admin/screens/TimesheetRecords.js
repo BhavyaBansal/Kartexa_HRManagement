@@ -110,7 +110,11 @@ function TimesheetRecords({route}) {
             </Text>
             <Text style={styles.modalText}>
               <Text style={styles.modalLabelText}>Date: </Text>
-              {modalData.date}
+              {modalData.date === undefined ? '' : modalData.date.slice(0, 10)}
+            </Text>
+            <Text style={styles.modalText}>
+              <Text style={styles.modalLabelText}>Time: </Text>
+              {modalData.date === undefined ? '' : modalData.date.slice(11, 16)}
             </Text>
             <Text style={styles.modalText}>
               <Text style={styles.modalLabelText}>Task Done: </Text>
@@ -145,7 +149,14 @@ function TimesheetRecords({route}) {
                 ? timesheet.taskdone.slice(0, 30) + '...'
                 : timesheet.taskdone}
             </Text>
-            <Text style={styles.dateStyle}>{timesheet.date}</Text>
+            <View style={styles.dateTimestyle}>
+              <Text style={styles.dateStyle}>
+                {timesheet.date.slice(0, 10)}
+              </Text>
+              <Text style={styles.dateStyle}>
+                {timesheet.date.slice(11, 16)}
+              </Text>
+            </View>
           </Pressable>
         ))}
       </ScrollView>
@@ -208,11 +219,15 @@ const styles = StyleSheet.create({
     color: 'black',
     letterSpacing: 0.5,
   },
-  dateStyle: {
+  dateTimestyle: {
     position: 'absolute',
-    letterSpacing: 0.5,
     right: 10,
     bottom: 0,
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+  },
+  dateStyle: {
+    letterSpacing: 0.5,
     fontSize: 11,
     color: 'white',
     backgroundColor: Colors.blue200,

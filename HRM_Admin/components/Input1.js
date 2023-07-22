@@ -12,7 +12,11 @@ function Input1({
   spellcheck,
 }) {
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        editable === false ? styles.noteditableText : '',
+      ]}>
       <TextInput
         onChangeText={onChangeProp}
         style={styles.text}
@@ -39,5 +43,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     letterSpacing: 0.5,
     color: Colors.grey200,
+  },
+  noteditableText: {
+    backgroundColor: Colors.blue100,
+    opacity: 0.6,
   },
 });

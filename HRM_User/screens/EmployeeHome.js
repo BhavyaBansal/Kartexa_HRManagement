@@ -17,6 +17,7 @@ import Calendar from 'react-native-calendars/src/calendar';
 import Heading from '../components/Heading';
 import SideBar from '../components/SideBar';
 import Label from '../components/Label';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const WIDTH = Dimensions.get('window').width;
 function EmployeeHome({route, navigation}) {
   const emp = route.params.employee;
@@ -38,7 +39,11 @@ function EmployeeHome({route, navigation}) {
   function showSidebar() {
     setSideBarIsVisible(true);
   }
-  function logoutHandler() {}
+  function logoutHandler() {
+    AsyncStorage.setItem('token', '');
+    AsyncStorage.setItem('keepLoggedIn', '');
+    AsyncStorage.setItem('employee', '');
+  }
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -244,7 +249,7 @@ const styles = StyleSheet.create({
   holidayContainer: {
     margin: 5,
     width: WIDTH * 0.95,
-    height: WIDTH * 0.4,
+    height: WIDTH * 0.41,
     elevation: 4,
     backgroundColor: 'white',
     padding: 5,
@@ -253,23 +258,23 @@ const styles = StyleSheet.create({
   holidayText: {
     marginLeft: 10,
     marginVertical: 5,
-    letterSpacing:0.5,
-    fontSize:12,
-    // color:'black'  
+    letterSpacing: 0.5,
+    fontSize: 12,
+    // color:'black'
   },
   okButton: {
     position: 'absolute',
     right: 5,
     bottom: 5,
     padding: 5,
-    backgroundColor: Colors.blue400,
+    backgroundColor: '#1e009464',
     color: 'white',
     borderRadius: 2,
     fontWeight: 'bold',
   },
   holidayNote: {
     alignSelf: 'center',
-    fontWeight:'bold',
-    color:'black',
+    fontWeight: 'bold',
+    color: 'black',
   },
 });

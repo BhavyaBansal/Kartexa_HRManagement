@@ -6,4 +6,8 @@ router.post("/clockin", clockinoutController.clockin);
 router.put("/clockout", clockinoutController.clockout);
 router.get("/clockindetails/:cId", clockinoutController.clockindetails);
 router.get("/clockoutdetails/:cId", clockinoutController.clockoutdetails);
+router.post(
+  "/employeesweeklyreport",
+  clockinoutController.getWeeklyReportDetails
+);
 module.exports = router;

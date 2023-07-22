@@ -1,7 +1,8 @@
-import {View, Text, StyleSheet, Pressable,ScrollView} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, Dimensions} from 'react-native';
 import Heading from '../components/Heading';
 import CustomButton from '../components/CustomButton';
 import {checkforpassupdated} from '../api';
+const WIDTH = Dimensions.get('window').width;
 function EmployeeDetailScreen({route, navigation}) {
   const empData = route.params.emp;
   const hrEmail = route.params.hrEmail;
@@ -20,7 +21,7 @@ function EmployeeDetailScreen({route, navigation}) {
   return (
     <View style={styles.outerContainer}>
       <Heading>{empData.name} Details</Heading>
-      <ScrollView>
+      <ScrollView style={styles.detailsContainer}>
         <View style={styles.detail}>
           <Text style={styles.detailLabel}>Name:</Text>
           <Text style={styles.detailData}>{empData.name}</Text>
@@ -215,5 +216,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#9b0606',
     letterSpacing: 0.5,
+  },
+  detailsContainer: {
+    width: WIDTH * 0.9,
+    flexGrow: 0.9,
   },
 });

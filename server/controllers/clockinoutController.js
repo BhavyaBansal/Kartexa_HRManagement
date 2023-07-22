@@ -1,4 +1,6 @@
+// const ClockInOut = require("../models/ClockInOut");
 const Cio = require("../models/ClockInOut");
+const Employee = require("../models/Employee");
 exports.clockin = (req, res) => {
   const { hrId, empId, name, email, phonenumber, department, designation } =
     req.body;
@@ -128,3 +130,62 @@ exports.clockoutdetails = (req, res) => {
       res.status(500).json({ message: "Server error" });
     });
 };
+
+
+// Assuming Cio and Employee are Mongoose models for MongoDB collections
+
+function findFinalEmpDetails(id, weekArray) {
+  return new Promise((resolve, reject) => {
+    Cio.find({ empId: id }).then((clockinoutsObj) => {
+      const serializedClockDetails = clockinoutsObj.map((cin) => ({
+        clockintime: cin.clockintime,
+        clockouttime: cin.clockouttime,
+      }));
+      const finalEmpDetails = {};
+      const oneEmpDetails = {};
+      let totalminutes = 0;
+      for (let j = 0; j < serializedClockDetails.length; j++) {
+        for (let k = 0; k < weekArray.length; k++) {
+          if (
+            serializedClockDetails[j].clockintime.toISOString().slice(0, 10) ===
+            weekArray[k]
+          ) {
+            let inTime = serializedClockDetails[j].clockintime.getTime();
+            let outTime = serializedClockDetails[j].clockouttime.getTime();
+            let minutesWorked = (outTime - inTime) / 60000;
+            totalminutes += parseInt(minutesWorked);
+            oneEmpDetails[weekArray[k]] = minutesWorked;
+          }
+        }
+      }
+      oneEmpDetails["totalWeeklyMinutes"] = totalminutes;
+      finalEmpDetails[id] = oneEmpDetails;
+      resolve(finalEmpDetails);
+    }).catch((err) => reject(err));
+  });
+}
+
+exports.getWeeklyReportDetails = (req, res) => {
+  const { hrId, weekArray } = req.body;
+  Employee.find({ hrId }).then((empObj) => {
+    const serializedEmpIds = empObj.map((employee) => ({
+      id: employee._id,
+    }));
+    const employeeweeklytimes = [];
+    for (let i = 0; i < serializedEmpIds.length; i++) {
+      findFinalEmpDetails(serializedEmpIds[i].id, weekArray).then((empDetails) => {
+        // console.log(empDetails);
+        employeeweeklytimes.push(empDetails);
+        if (employeeweeklytimes.length === serializedEmpIds.length) {
+          // Once all employees' details are collected, send the response to the client
+          res.json(employeeweeklytimes);
+        }
+      }).catch((err) => {
+        // Handle any errors that occurred during processing
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while processing the data.' });
+      });
+    }
+  });
+};
+

@@ -87,26 +87,11 @@ function HomeScreen({navigation, route}) {
   function openAddHolidayForm() {
     navigation.navigate('Holiday', {hrId: id});
   }
+  function openReportsPage() {
+    navigation.navigate('Reports', {hrId: id});
+  }
   return (
     <View style={styles.outerContainer}>
-      <View style={styles.buttonContainer}>
-        <CustomButton onPressProp={openAddHolidayForm}>
-          {/* <Ionicons name={'happy'} size={20} color="white" /> */}
-          Add Holiday
-        </CustomButton>
-        <CustomButton onPressProp={addEmployeeHandler}>
-          {/* <AntDesign name={'adduser'} size={20} color="white" /> */}
-          Add Employee
-        </CustomButton>
-        <Pressable
-          android_ripple={{color: '#ccc', borderless: true}}
-          onPress={refreshHandler}>
-          <Image
-            source={require('../public/icons/refresh.png')}
-            style={styles.refresh}
-          />
-        </Pressable>
-      </View>
       <ScrollView>
         {/* <Text>List Of Employees</Text> */}
         <View>
@@ -135,6 +120,30 @@ function HomeScreen({navigation, route}) {
             </Pressable>
           ))}
         </View>
+      </ScrollView>
+      <ScrollView
+        style={styles.buttonContainer}
+        horizontal={true}
+        contentContainerStyle={{alignItems: 'center'}}>
+        <CustomButton onPressProp={openAddHolidayForm}>
+          {/* <Ionicons name={'happy'} size={20} color="white" /> */}
+          {'       '}Push Notifications
+        </CustomButton>
+        <CustomButton onPressProp={addEmployeeHandler}>
+          {/* <AntDesign name={'adduser'} size={20} color="white" /> */}
+          Add Employee
+        </CustomButton>
+        <CustomButton onPressProp={openReportsPage}>
+          <Text>Reports</Text>
+        </CustomButton>
+        <Pressable
+          android_ripple={{color: '#ccc', borderless: true}}
+          onPress={refreshHandler}>
+          <Image
+            source={require('../public/icons/refresh.png')}
+            style={styles.refresh}
+          />
+        </Pressable>
       </ScrollView>
       <Text>Hr ID: {id}</Text>
       <NavigationFooter hrId={id}></NavigationFooter>
@@ -189,6 +198,11 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    height: WIDTH * 0.1,
+    flexGrow: 0.06,
+    flexShrink: 0.06,
+  },
+  icons: {
+    marginRight: 5,
   },
 });
