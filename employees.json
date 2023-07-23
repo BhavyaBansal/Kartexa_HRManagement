@@ -1,0 +1,127 @@
+[{
+  "_id": {
+    "$oid": "64b939e73d82f5cd70ac8efa"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "name": "Bhavya Bansal",
+  "email": "bhavyabansal0916@gmail.com",
+  "temppassword": "$2b$10$e0wMAQweTzVC61kMmxihWOIsx6MgGEnia0N8xdWoNiiBb02FvUAFG",
+  "phonenumber": {
+    "$numberLong": "7837483745"
+  },
+  "aadharnumber": 0,
+  "pannumber": "",
+  "address": "",
+  "dateofbirth": null,
+  "gender": "male",
+  "maritalstatus": "single",
+  "emergencycontactname": "",
+  "emergencycontactnumber": 0,
+  "accountnumber": 0,
+  "ifsccode": "",
+  "department": "IT",
+  "designation": "React Native Developer",
+  "joiningdate": {
+    "$date": {
+      "$numberLong": "1689120000000"
+    }
+  },
+  "employmentstatus": "Intern",
+  "probationenddate": {
+    "$date": {
+      "$numberLong": "1689206400000"
+    }
+  },
+  "confirmationdate": {
+    "$date": {
+      "$numberLong": "1689292800000"
+    }
+  },
+  "salary": 10000,
+  "finalsalary": 9600,
+  "managername": "Raghav",
+  "casualleaves": 2,
+  "sickleaves": 0,
+  "earnedleaves": 10,
+  "maternityleaves": 30,
+  "totalcasualleaves": 0,
+  "totalsickleaves": 2,
+  "totalearnedleaves": 0,
+  "totalmaternityleaves": 0,
+  "totalleavesmade": 2,
+  "currentmonth": 7,
+  "currentyear": 2023,
+  "ispassupdated": true,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689860583867"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690117818700"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bd218899483fd6d10896d5"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "name": "Akash Singh",
+  "email": "akashsingh285285@gmail.com",
+  "temppassword": "123456",
+  "phonenumber": {
+    "$numberLong": "7238728432"
+  },
+  "aadharnumber": 0,
+  "pannumber": "",
+  "address": "",
+  "dateofbirth": null,
+  "gender": "male",
+  "maritalstatus": "single",
+  "emergencycontactname": "",
+  "emergencycontactnumber": 0,
+  "accountnumber": 0,
+  "ifsccode": "",
+  "department": "IT",
+  "designation": "react native developer",
+  "joiningdate": {
+    "$date": {
+      "$numberLong": "1690070400000"
+    }
+  },
+  "employmentstatus": "Intern",
+  "probationenddate": null,
+  "confirmationdate": null,
+  "salary": 10000,
+  "finalsalary": 10000,
+  "managername": "",
+  "casualleaves": 2,
+  "sickleaves": 0,
+  "earnedleaves": 10,
+  "maternityleaves": 30,
+  "totalcasualleaves": 0,
+  "totalsickleaves": 0,
+  "totalearnedleaves": 0,
+  "totalmaternityleaves": 0,
+  "totalleavesmade": 0,
+  "currentmonth": 7,
+  "currentyear": 2023,
+  "ispassupdated": false,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690116488592"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690117077461"
+    }
+  },
+  "__v": 0
+}]

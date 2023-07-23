@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "64b93d913d82f5cd70ac8f13"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "empId": {
+    "$oid": "64b939e73d82f5cd70ac8efa"
+  },
+  "leaveReason": "High Fever",
+  "fromdate": {
+    "$date": {
+      "$numberLong": "1690140434505"
+    }
+  },
+  "todate": {
+    "$date": {
+      "$numberLong": "1690226834505"
+    }
+  },
+  "totalnoofdays": 2,
+  "leavetype": "Sick",
+  "leavestatus": "Approved",
+  "currentmonth": 7,
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689861521741"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689862775817"
+    }
+  },
+  "__v": 0
+}]

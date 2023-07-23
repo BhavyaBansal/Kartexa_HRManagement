@@ -1,0 +1,73 @@
+[{
+  "_id": {
+    "$oid": "64bcde2a9adad164854f7c01"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1690119041536"
+    }
+  },
+  "message": "Today is Holiday...",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690099242225"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690099242225"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bcde529adad164854f7c03"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1690119081973"
+    }
+  },
+  "message": "Trip has been planned to shimla..",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690099282606"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690099282606"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bd249b99483fd6d10896e5"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "date": {
+    "$date": {
+      "$numberLong": "1690137074634"
+    }
+  },
+  "message": "Tomorrow is a meeting link will be uploaded",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690117275303"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690117275303"
+    }
+  },
+  "__v": 0
+}]

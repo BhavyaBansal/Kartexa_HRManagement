@@ -1,0 +1,91 @@
+[{
+  "_id": {
+    "$oid": "64bbd6e55006cadbe0bf02a3"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "topic": "Task Allocation",
+  "description": "To Allocate the task",
+  "goals": "To Allocate the task",
+  "teamname": "Team1",
+  "teamsize": 2,
+  "date": {
+    "$date": {
+      "$numberLong": "1690310690344"
+    }
+  },
+  "time": "20 45",
+  "duration": 1,
+  "link": "qwert.meet.com",
+  "participants": [
+    {
+      "id": "64b939e73d82f5cd70ac8efa",
+      "status": "Accepted",
+      "email": "bhavyabansal0916@gmail.com"
+    },
+    {
+      "id": "64bb734227873325e887cb6a",
+      "status": "Declined",
+      "email": "bansalmahak1012@gmail.com"
+    }
+  ],
+  "presentees": [],
+  "absentees": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690031845859"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690051336494"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bcc672c501e62004d978fe"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "topic": "New Joinee Introduction",
+  "description": "Introductions for new Joinees",
+  "goals": "...",
+  "teamname": "...",
+  "teamsize": 2,
+  "date": {
+    "$date": {
+      "$numberLong": "1690285671824"
+    }
+  },
+  "time": "18 0",
+  "duration": 1,
+  "link": "www.google.com",
+  "participants": [
+    {
+      "id": "64b939e73d82f5cd70ac8efa",
+      "status": "Accepted",
+      "email": "bhavyabansal0916@gmail.com"
+    },
+    {
+      "id": "64bb734227873325e887cb6a",
+      "status": null,
+      "email": "bansalmahak1012@gmail.com"
+    }
+  ],
+  "presentees": [],
+  "absentees": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690093170948"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690117893997"
+    }
+  },
+  "__v": 0
+}]

@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "fullname": "Raghav Bansal",
+  "phonenumber": {
+    "$numberLong": "9876543210"
+  },
+  "email": "raghav@gmail.com",
+  "password": "$2b$10$kudiQf38No6F8oIH3x1tme1inTCCn8D5EwG9KlpCEqRvZ2zQ1TT4e",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1685704651589"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1685704651589"
+    }
+  },
+  "__v": 0
+}]

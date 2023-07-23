@@ -1,0 +1,157 @@
+[{
+  "_id": {
+    "$oid": "64b93d083d82f5cd70ac8f0e"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "empId": {
+    "$oid": "64b939e73d82f5cd70ac8efa"
+  },
+  "name": "Bhavya Bansal",
+  "email": "bhavyabansal0916@gmail.com",
+  "phonenumber": {
+    "$numberLong": "7837483745"
+  },
+  "department": "Marketing",
+  "designation": "React Native Developer",
+  "clockintime": {
+    "$date": {
+      "$numberLong": "1689881184623"
+    }
+  },
+  "clockouttime": {
+    "$date": {
+      "$numberLong": "1689881986726"
+    }
+  },
+  "totaltimeworked": "0:13",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689861384643"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689862186729"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bb71276338b9e71b392259"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "empId": {
+    "$oid": "64b939e73d82f5cd70ac8efa"
+  },
+  "name": "Bhavya Bansal",
+  "email": "bhavyabansal0916@gmail.com",
+  "phonenumber": {
+    "$numberLong": "7837483745"
+  },
+  "department": "IT",
+  "designation": "React Native Developer",
+  "clockintime": {
+    "$date": {
+      "$numberLong": "1690025599484"
+    }
+  },
+  "clockouttime": {
+    "$date": {
+      "$numberLong": "1690025723838"
+    }
+  },
+  "totaltimeworked": "0:2",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690005799519"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690005923839"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bb741427873325e887cb73"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "empId": {
+    "$oid": "64bb734227873325e887cb6a"
+  },
+  "name": "Mahak Bansal",
+  "email": "bansalmahak1012@gmail.com",
+  "phonenumber": {
+    "$numberLong": "8273727434"
+  },
+  "department": "HR",
+  "designation": "HR Manager",
+  "clockintime": {
+    "$date": {
+      "$numberLong": "1690026348196"
+    }
+  },
+  "clockouttime": {
+    "$date": {
+      "$numberLong": "1690026482803"
+    }
+  },
+  "totaltimeworked": "0:3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690006548198"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690006682804"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64bd275699483fd6d1089718"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "empId": {
+    "$oid": "64b939e73d82f5cd70ac8efa"
+  },
+  "name": "Bhavya Bansal",
+  "email": "bhavyabansal0916@gmail.com",
+  "phonenumber": {
+    "$numberLong": "7837483745"
+  },
+  "department": "IT",
+  "designation": "React Native Developer",
+  "clockintime": {
+    "$date": {
+      "$numberLong": "1690137774297"
+    }
+  },
+  "clockouttime": {
+    "$date": {
+      "$numberLong": "1690138039918"
+    }
+  },
+  "totaltimeworked": "0:5",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1690117974309"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1690118239926"
+    }
+  },
+  "__v": 0
+}]
