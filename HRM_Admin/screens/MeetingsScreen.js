@@ -34,7 +34,7 @@ function MeetingsScreen({route, navigation}) {
   function getAllMeet() {
     const allMeets = getallmeetinformat(hrId);
     allMeets.then(response => {
-      //   console.log(response.data);
+      console.log(response.data);
       setAllEvents(response.data);
     });
   }

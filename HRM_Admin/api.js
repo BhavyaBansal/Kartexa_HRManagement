@@ -322,3 +322,31 @@ export const employeesweeklyreport = (hrId, weekArray) => {
     },
   );
 };
+
+export const getmeetingsbydate = (hrId, date) => {
+  return axios.post(
+    `${API_BASE_URL}/meeting/getmeetingsbydate`,
+    {hrId, date},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};
+
+export const addnotification = (hrId, date, message) => {
+  return axios.post(
+    `${API_BASE_URL}/notification/addnotification`,
+    {
+      hrId,
+      date,
+      message,
+    },
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

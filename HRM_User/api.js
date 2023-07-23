@@ -288,3 +288,15 @@ export const getallholidays = hrId => {
     },
   );
 };
+
+export const getnotificationsbydate = (hrId, date) => {
+  return axios.post(
+    `${API_BASE_URL}/notification/getnotificationsbydate`,
+    {hrId, date},
+    {
+      headers: {
+        'content-type': 'application/json',
+      },
+    },
+  );
+};

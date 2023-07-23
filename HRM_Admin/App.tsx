@@ -20,6 +20,7 @@ import MeetingsScreen from './screens/MeetingsScreen';
 import TimesheetRecords from './screens/TimesheetRecords';
 import AddHolidayForm from './screens/AddHolidayForm';
 import EmployeeReports from './screens/EmployeeReports';
+import MeetingsScreenCard from './screens/MeetingsScreenCard';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
@@ -97,7 +98,7 @@ function App() {
         />
         <Stack.Screen
           name="Meetings"
-          component={MeetingsScreen}
+          component={MeetingsScreenCard}
           options={{title: 'Meetings'}}
         />
         <Stack.Screen

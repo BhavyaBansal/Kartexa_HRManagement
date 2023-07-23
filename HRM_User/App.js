@@ -21,6 +21,7 @@ import TaskSubmission from './screens/TaskSubmission';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useState, useEffect} from 'react';
+import NotificationsScreen from './screens/NotificationsScreen';
 const Stack = createNativeStackNavigator();
 function App() {
   // const [isLogged, setIsLogged] = useState(false);
@@ -135,6 +136,11 @@ function App() {
             name="TaskSubmission"
             component={TaskSubmission}
             options={{title: 'Timesheet Submission'}}
+          />
+          <Stack.Screen
+            name="Notifications"
+            component={NotificationsScreen}
+            options={{title: 'Announcements'}}
           />
           {/* </Stack.Navigator>
         ) : (

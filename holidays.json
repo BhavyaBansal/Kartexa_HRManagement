@@ -1,0 +1,101 @@
+[{
+  "_id": {
+    "$oid": "64b966e788049f01c595ee57"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "reason": "Republic Day",
+  "description": "Republic Day is the day when India marks and celebrates the date on which the Constitution of India came into effect on 26 January 1950. This replaced the Government of India Act 1935 as the governing document of India, thus turning the nation into a republic separate from British Raj.",
+  "date": {
+    "$date": {
+      "$numberLong": "1674762873860"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64b9675f88049f01c595ee58"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "reason": "Independence Day",
+  "description": "Independence Day is celebrated annually on 15 August as a public holiday in India commemorating the nation's independence from the United Kingdom on 15 August 1947, the day when the provisions of the Indian Independence Act, which transferred legislative sovereignty to the Indian Constituent Assembly, came into effect.",
+  "date": {
+    "$date": {
+      "$numberLong": "1692129273860"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64b9682888049f01c595ee59"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "reason": "Gandhi Jayanti",
+  "description": "Gandhi Jayanti is an event celebrated in India to mark the birthday of Mahatma Gandhi. It is celebrated annually on 2 October, and is one of the three national holidays of India.",
+  "date": {
+    "$date": {
+      "$numberLong": "1696276473860"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "64b9687988049f01c595ee5a"
+  },
+  "hrId": {
+    "$oid": "6479cfcb1a47ef758bf77f14"
+  },
+  "reason": "Christmas Day",
+  "description": "Christmas is an annual festival commemorating the birth of Jesus Christ, observed primarily on December 25 as a religious and cultural celebration among billions of people around the world.",
+  "date": {
+    "$date": {
+      "$numberLong": "1703534073860"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1689863139279"
+    }
+  },
+  "__v": 0
+}]

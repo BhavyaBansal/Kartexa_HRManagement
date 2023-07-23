@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   Dimensions,
+  Linking,
 } from 'react-native';
 import Heading from '../components/Heading';
 const WIDTH = Dimensions.get('window').width;
@@ -67,6 +68,17 @@ function CompanyPolicy() {
           the contract or prematurely terminated by the company,or have resigned
           will no longer be subject to the terms and conditions of this policy.
         </Text>
+        <Text style={[styles.normalText, {color: 'black'}]}>
+          For more information visit to:{'  '}
+          <Text
+            style={{color: 'blue', textDecorationLine: 'underline'}}
+            onPress={() =>
+              Linking.openURL('https://store.kartexa.com/policies/')
+            }>
+            Kartexa Polices
+          </Text>
+        </Text>
+        <View style={{marginTop: 20}}></View>
       </ScrollView>
     </View>
   );

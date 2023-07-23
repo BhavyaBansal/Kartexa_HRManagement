@@ -10,6 +10,7 @@ const meetingRoutes = require("./routes/meeting");
 const leaveRoutes = require("./routes/leave");
 const timesheetRoutes = require("./routes/timesheet");
 const holidayRoutes = require("./routes/holiday");
+const notificationRoutes = require("./routes/notification");
 const MongoDbStore = require("connect-mongo");
 const session = require("express-session");
 const app = express();
@@ -69,6 +70,7 @@ app.use("/api/meeting", meetingRoutes);
 app.use("/api/leave", leaveRoutes);
 app.use("/api/timesheet", timesheetRoutes);
 app.use("/api/holiday", holidayRoutes);
+app.use("/api/notification", notificationRoutes);
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

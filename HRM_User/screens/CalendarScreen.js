@@ -7,6 +7,7 @@ import {
   Pressable,
   Alert,
   RefreshControl,
+  Linking,
 } from 'react-native';
 import Calendar from 'react-native-calendars/src/calendar';
 import Heading from '../components/Heading';
@@ -109,7 +110,11 @@ function CalendarScreen({route, navigation}) {
                     : meeting.time + ' am'}
                 </Text>
               </View>
-              <Text style={styles.meetText}>{meeting.link}</Text>
+              <Text
+                style={[styles.meetText,{color:'blue'}]}
+                onPress={() => Linking.openURL('https://' + meeting.link)}>
+                {meeting.link}
+              </Text>
             </Pressable>
             {/* {([meetStatus, setMeetStatus] = useState(''))} */}
             {(meetStatus = '')}

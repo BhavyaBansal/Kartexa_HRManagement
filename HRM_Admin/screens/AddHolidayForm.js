@@ -1,19 +1,17 @@
 import {
   View,
-  Text,
   StyleSheet,
   Image,
   Dimensions,
   Alert,
-  TextInput,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import Label from '../components/Label';
 import Input1 from '../components/Input1';
 import React, {useState} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import CustomButton from '../components/CustomButton';
-import {addholiday} from '../api';
+import {addholiday, addnotification} from '../api';
 import Heading from '../components/Heading';
 import Textarea from 'react-native-textarea';
 import Colors from '../constants/colors';
@@ -67,8 +65,23 @@ function AddHolidayForm({route}) {
     // console.log(val);
     setAnnouncement(val);
   }
+  function addNotificationHandler() {
+    const currDate = new Date();
+    const newDate = new Date();
+    newDate.setTime(currDate.getTime() + 19800 * 1000);
+    addnotification(hrId, newDate, announcement)
+      .then(() => {
+        Alert.alert('Success', 'Announcement has been made successfully!!');
+        // setAnnouncement('');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
   return (
-    <ScrollView style={styles.outerContainer} contentContainerStyle={{alignItems:'center'}}>
+    <ScrollView
+      style={styles.outerContainer}
+      contentContainerStyle={{alignItems: 'center'}}>
       {/* <Text>{hrId}</Text> */}
       <Image
         source={require('../public/images/Ellipse2.png')}
@@ -119,8 +132,8 @@ function AddHolidayForm({route}) {
           underlineColorAndroid={'transparent'}
         />
       </View>
-      <CustomButton>Submit</CustomButton>
-      <View style={{marginBottom:20}}></View>
+      <CustomButton onPressProp={addNotificationHandler}>Submit</CustomButton>
+      <View style={{marginBottom: 20}}></View>
     </ScrollView>
   );
 }
@@ -153,7 +166,7 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: Colors.blue100,
     borderRadius: 10,
-    margin:10,
+    margin: 10,
   },
   textarea: {
     textAlignVertical: 'top',

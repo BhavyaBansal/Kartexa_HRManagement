@@ -145,7 +145,7 @@ function HomeScreen({navigation, route}) {
           />
         </Pressable>
       </ScrollView>
-      <Text>Hr ID: {id}</Text>
+      {/* <Text>Hr ID: {id}</Text> */}
       <NavigationFooter hrId={id}></NavigationFooter>
     </View>
   );
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   employeeContainer: {
-    width: WIDTH * 0.8,
+    width: WIDTH * 0.9,
     backgroundColor: Colors.blue100,
     margin: 10,
     padding: 5,

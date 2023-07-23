@@ -1,6 +1,8 @@
 import {View, Text, StyleSheet, Dimensions, Pressable} from 'react-native';
 import Colors from '../constants/colors';
 const WIDTH = Dimensions.get('window').width;
+import React, {useState, useEffect} from 'react';
+import {getnotificationsbydate} from '../api';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,6 +11,7 @@ function NavigationFooter(props) {
   const empData = props.emp;
   // console.log(empData);
   const navigation = useNavigation();
+  const [notilength, setNotiLength] = useState(0);
   function openAccountPageHandler() {
     navigation.navigate('Account', {empId: empData.empid});
   }
@@ -29,6 +32,22 @@ function NavigationFooter(props) {
     };
     navigation.navigate('TaskSubmission', {details: details});
   }
+  function openNotificationsScreenHandler() {
+    navigation.navigate('Notifications', {hrId: empData.hrid});
+  }
+  function getNotificationsCount() {
+    const currdate = new Date();
+    const newdate = new Date(currdate.getTime() + 19800 * 1000);
+    // console.log(newdate.toISOString());
+    const details = getnotificationsbydate(empData.hrid, newdate.toISOString());
+    details.then(response => {
+      // console.log(response.data);
+      setNotiLength(response.data.length);
+    });
+  }
+  useEffect(() => {
+    getNotificationsCount();
+  }, []);
   return (
     <View style={styles.outerContainer}>
       <View style={styles.iconsContainer}>
@@ -37,7 +56,12 @@ function NavigationFooter(props) {
           android_ripple={{color: '#ccc', borderless: true, radius: 25}}>
           <FontAwesome5 name="home" size={25} style={styles.icons} />
         </Pressable>
-        <Ionicons name="mail" size={27} style={styles.icons} />
+        <Pressable
+          android_ripple={{color: '#ccc', borderless: true, radius: 25}}
+          onPress={openNotificationsScreenHandler}>
+          <Text style={styles.notifications}>{notilength}</Text>
+          <Ionicons name="mail" size={27} style={styles.icons} />
+        </Pressable>
         <Pressable
           android_ripple={{color: '#ccc', borderless: true, radius: 25}}
           onPress={openCalendarScreen}>
@@ -81,5 +105,18 @@ const styles = StyleSheet.create({
   },
   icons: {
     color: '#ffffff',
+  },
+  notifications: {
+    position: 'absolute',
+    width: WIDTH * 0.05,
+    height: WIDTH * 0.05,
+    right: -8,
+    backgroundColor: 'red',
+    top: -8,
+    zIndex: 100,
+    borderRadius: 10,
+    color: 'white',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 });

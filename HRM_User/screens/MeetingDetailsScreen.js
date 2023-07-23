@@ -1,4 +1,4 @@
-import {Text, View, StyleSheet, Dimensions,Image} from 'react-native';
+import {Text, View, StyleSheet, Dimensions, Image, Linking} from 'react-native';
 import Heading from '../components/Heading';
 import Colors from '../constants/colors';
 const WIDTH = Dimensions.get('window').width;
@@ -7,7 +7,7 @@ function MeetingDetailsScreen({route}) {
   return (
     <View style={styles.outerContainer}>
       <Heading>{meetingdetails.teamname}</Heading>
-      <Image source={require("../public/images/meeting.png")}/>
+      <Image source={require('../public/images/meeting.png')} />
       <View style={styles.meetingCard}>
         <Text style={styles.meetingText}>Topic: {meetingdetails.topic}</Text>
         <Text style={styles.meetingText}>
@@ -23,7 +23,14 @@ function MeetingDetailsScreen({route}) {
         <Text style={styles.meetingText}>
           Team Size: {meetingdetails.teamsize} Members
         </Text>
-        <Text style={styles.meetingText}>Team Size: {meetingdetails.link}</Text>
+        <Text style={[styles.meetingText]}>
+          Team Size:{' '}
+          <Text
+            style={{color: 'blue'}}
+            onPress={() => Linking.openURL('https://' + meetingdetails.link)}>
+            {meetingdetails.link}
+          </Text>
+        </Text>
         <Text style={styles.meetingText}>Next Meeting: Coming Soon</Text>
       </View>
     </View>
@@ -48,6 +55,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     elevation: 4,
     width: WIDTH * 0.95,
-    marginVertical:10,
+    marginVertical: 10,
   },
 });

@@ -130,3 +130,31 @@ exports.getAllMeetInFormat = (req, res) => {
       res.status(500).json({ message: "Server error" });
     });
 };
+
+exports.getMeetingsByDate = (req, res) => {
+  const { hrId, date } = req.body;
+  Meeting.find({ hrId })
+    .then((meet) => {
+      const serializedData = meet.map((item) => ({
+        id: item._id,
+        topic: item.topic,
+        description: item.description,
+        goals: item.goals,
+        teamname: item.teamname,
+        teamsize: item.teamsize,
+        date: item.date,
+        time: item.time,
+        duration: item.duration,
+        link: item.link,
+        participants: item.participants,
+      }));
+      const finalData = serializedData.filter(function (el) {
+        return el.date.toISOString().slice(0, 10) === date.slice(0, 10);
+      });
+      res.status(200).json(finalData);
+    })
+    .catch((error) => {
+      console.error("Error fetching Meetings:", error);
+      res.status(500).json({ message: "Server error" });
+    });
+};
