@@ -65,7 +65,7 @@ function AddEmployeeForm({route, navigation}) {
   const [probationText, setProbationText] = useState('');
   const [confirmationText, setConfirmationText] = useState('');
   const [salary, setSalary] = useState(0);
-  const [manager, setManager] = useState('');
+  const [manager, setManager] = useState("");
   // const [leaveBal, setLeaveBal] = useState(0);
 
   function setVariousFieldValues(event, type) {
@@ -109,60 +109,74 @@ function AddEmployeeForm({route, navigation}) {
   let ifsccode = '';
 
   const handleAddEmployee = () => {
-    addemployee(
-      hrId,
-      name,
-      email,
-      pass,
-      number,
-      aadharnumber,
-      pannumber,
-      address,
-      dateofbirth,
-      gender,
-      maritalstatus,
-      emergencycontactname,
-      emergencycontactnumber,
-      accountnumber,
-      ifsccode,
-      selectedDepartment,
-      designation,
-      joiningText,
-      employementStatus,
-      probationText,
-      confirmationText,
-      salary,
-      manager,
-      // leaveBal,
-    )
-      .then(() => {
-        Alert.alert('Success', 'Employee Added Successfully');
-        navigation.navigate('AdminHome', {email: hrEmail, id: hrId});
+    if (
+      name === '' ||
+      pass === '' ||
+      email === '' ||
+      number === 0 ||
+      selectedDepartment === '' ||
+      designation === '' ||
+      employementStatus === '' ||
+      joiningText === '' ||
+      salary === 0
+    ) {
+      Alert.alert('Error', 'Kindly fill all the mandatory fields.');
+    } else {
+      addemployee(
+        hrId,
+        name,
+        email,
+        pass,
+        number,
+        aadharnumber,
+        pannumber,
+        address,
+        dateofbirth,
+        gender,
+        maritalstatus,
+        emergencycontactname,
+        emergencycontactnumber,
+        accountnumber,
+        ifsccode,
+        selectedDepartment,
+        designation,
+        joiningText,
+        employementStatus,
+        probationText,
+        confirmationText,
+        salary,
+        manager,
+        // leaveBal,
+      )
+        .then(() => {
+          Alert.alert('Success', 'Employee Added Successfully');
+          navigation.navigate('AdminHome', {email: hrEmail, id: hrId});
 
-        let mailOptions = {
-          from: Email.EMAIL,
-          to: `${email}`,
-          subject: 'Account Created',
-          html: `<h2>Dear ${name} your account is created these are the details as follows:</h2><br>
+          let mailOptions = {
+            from: Email.EMAIL,
+            to: `${email}`,
+            subject: 'Account Created',
+            html: `<h2>Dear ${name} your account is created these are the details as follows:</h2><br>
                 <b>Email:</b>${email}<br>
                 <b>One Time Password:</b>${pass}<br>
                 Do not share this password with anyone.<br>
                 In case of any doubt contact to ${hrEmail}.<br>
                 Do check and update further details till next week.<br>
                 ThankYou!!`,
-        };
-        sendEmail(mailOptions)
-          .then(response => {
-            Alert.alert('Success', 'Account Creation Mail Sent Successfully');
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      })
-      .catch(error => {
-        // Alert.alert('Error', 'Some Error occured');
-        console.log(error);
-      });
+          };
+          sendEmail(mailOptions)
+            .then(response => {
+              Alert.alert('Success', 'Account Creation Mail Sent Successfully');
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        })
+        .catch(error => {
+          // Alert.alert('Error', 'Some Error occured');
+          console.log(error);
+        });
+    }
   };
   return (
     <ScrollView

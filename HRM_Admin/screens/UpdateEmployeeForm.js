@@ -72,13 +72,13 @@ function UpdateEmployeeForm({route, navigation}) {
     console.log(val);
   }
   const [probationText, setProbationText] = useState(
-    empData.probationenddate.slice(0, 10),
+    empData.probationenddate!==null?empData.probationenddate.slice(0, 10):"",
   );
   const [confirmationText, setConfirmationText] = useState(
-    empData.confirmationdate.slice(0, 10),
+    empData.confirmationdate!==null?empData.confirmationdate.slice(0, 10):"",
   );
   const [salary, setSalary] = useState(empData.salary);
-  const [manager, setManager] = useState(empData.managername);
+  const [manager, setManager] = useState(empData.managername!==null?empData.managername:"");
   // const [leaveBal, setLeaveBal] = useState(empData.leavebalance);
   function changeUpdateEmailStatus() {
     setUpdateEmail(false);

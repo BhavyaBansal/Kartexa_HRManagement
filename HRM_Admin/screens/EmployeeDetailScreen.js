@@ -163,14 +163,18 @@ function EmployeeDetailScreen({route, navigation}) {
           <Text style={styles.detailLabel}>Probation End Date:</Text>
           <Text style={styles.detailData}>
             {' '}
-            {empData.probationenddate.slice(0, 10)}
+            {empData.probationenddate !== null
+              ? empData.probationenddate.slice(0, 10)
+              : ''}
           </Text>
         </View>
         <View style={styles.detail}>
           <Text style={styles.detailLabel}>Confirmation Date:</Text>
           <Text style={styles.detailData}>
             {' '}
-            {empData.confirmationdate.slice(0, 10)}
+            {empData.confirmationdate !== null
+              ? empData.confirmationdate.slice(0, 10)
+              : ''}
           </Text>
         </View>
         <View style={styles.detail}>
@@ -179,7 +183,10 @@ function EmployeeDetailScreen({route, navigation}) {
         </View>
         <View style={styles.detail}>
           <Text style={styles.detailLabel}>Manager Name:</Text>
-          <Text style={styles.detailData}> {empData.managername}</Text>
+          <Text style={styles.detailData}>
+            {' '}
+            {empData.managername !== null ? empData.managername : ''}
+          </Text>
         </View>
         {/* <View style={styles.detail}>
           <Text style={styles.detailLabel}>Leave Balance:</Text>

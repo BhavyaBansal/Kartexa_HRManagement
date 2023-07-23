@@ -43,11 +43,11 @@ const employeeSchema = new Schema(
       enum: ["Full-Time", "Part-Time", "Intern", "Mentor"],
       default: "Intern",
     },
-    probationenddate: { type: Date, required: true },
+    probationenddate: { type: Date },
     confirmationdate: { type: Date },
     salary: { type: Number, required: true },
     finalsalary: { type: Number, required: true, default: 0 },
-    managername: { type: String, required: true },
+    managername: { type: String },
 
     casualleaves: { type: Number, default: 2, required: true }, // it will decrease and reloaded every month
     sickleaves: { type: Number, default: 0, required: true }, // it will increase and will be paid and reloaded every month
